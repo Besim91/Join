@@ -222,6 +222,7 @@ function fillArray() {
   };
   pushToDo(newToDo);
   clearAddTaskFloating();
+  addStatusToMembers();
 }
 
 /**
@@ -259,9 +260,13 @@ function showIconsPrio(priority) {
  * Renders contacts on the board.
  */
 
-function renderContactsOnBoard() {
+function 
+
+tsOnBoard() {
+  // Clear the contact list container
   document.getElementById("listContactContainerMain").innerHTML = ``;
   let contactBoard = document.getElementById("listContactContainerMain");
+  // Toggle the display of the contact board
   if (contactBoard.classList.contains("dNone")) {
     contactBoard.classList.remove("dNone");
     contactBoard.classList.add("dFlex");
@@ -269,32 +274,29 @@ function renderContactsOnBoard() {
     contactBoard.classList.add("dNone");
     contactBoard.classList.remove("dFlex");
   }
+  // Render contacts if available
   if (mainUserInfos[0]["contactBook"]) {
-    renderContactbook();
+    for (let i = 0; i < mainUserInfos[0]["contactBook"].length; i++) {
+      contactBoard.innerHTML += `
+    <div class="contactsBoardContainer">
+        <div class="contactsBoardContainerChild">   
+            <div class="styleMembersAddTask" id="profilMemberMain${i}"></div>
+            <span class="nameMember" id="nameMemberMain${i}"></span>
+        </div>
+        <input class="customCheckbox" id="checkboxMember${i}" type="checkbox" onchange="updateStatus(${i})">
+    </div>
+    `;
+      fillContactsOnBoard(i);
+    }
+    assignRandomBackgroundColor();
+    addCheckboxStatus();
   }
 }
 
-function renderContactbook() {
-  let contactBoard = document.getElementById("listContactContainerMain");
-  for (let i = 0; i < mainUserInfos[0]["contactBook"].length; i++) {
-    contactBoard.innerHTML += `
-  <div class="contactsBoardContainer" onclick="checkCheckbox(${i})" onchange="updateStatus(${i})">
-      <div class="contactsBoardContainerChild">   
-          <div class="styleMembersAddTask" id="profilMemberMain${i}"></div>
-          <span class="nameMember" id="nameMemberMain${i}"></span>
-      </div>
-      <input class="customCheckbox" id="checkboxMember${i}" type="checkbox" onclick="checkCheckbox(${i})" onchange="updateStatus(${i})">
-  </div>
-  `;
-    fillContactsOnBoard(i);
-  }
-  assignRandomBackgroundColor();
-  addCheckboxStatus();
-}
+
 /**
  * Adds checkbox status.
  */
-
 function addCheckboxStatus() {
   for (let i = 0; i < mainUserInfos[0]["contactBook"].length; i++) {
     let checkbox = document.getElementById(`checkboxMember${i}`);
@@ -306,7 +308,6 @@ function addCheckboxStatus() {
  * Updates  the status of the contact
  * @param {number} i - The index of the contact.
  */
-
 function updateStatus(i) {
   let checkbox = document.getElementById(`checkboxMember${i}`);
   if (checkbox.checked) {
@@ -594,7 +595,6 @@ function technicalUserMain() {
  */
 
 function toggleCategory() {
-  addStatusToMembers();
   var listTechnical = document.getElementById("listTechnicalMain");
   var categoryDropdown = document.getElementById("categoryDropdownMain");
 
@@ -790,15 +790,4 @@ function addPriorityValue(priority) {
   currentPriority = priority;
   console.log("Selected priority:", currentPriority);
   showIconsPrio(priority);
-}
-
-/**
- * Toggles the checkbox checked state based on the provided index.
- *
- * @param {number} i - The index of the checkbox to toggle.
- * @returns {void}
- */
-function checkCheckbox(i) {
-  var checkbox = document.getElementById(`checkboxMember${i}`);
-  checkbox.checked = !checkbox.checked;
 }
