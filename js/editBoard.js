@@ -287,7 +287,7 @@ function getDescriptionInputHTML(i) {
 function getDueDateInputHTML(i) {
   return `
     <label class="styleDueDate" for="dueDateAddTaskFloating">Due date</label><br>
-    <input type="date" id="dueDateAddTaskFloating${i}" class="dueDateAddTaskFloating" name="due_date" required placeholder="dd/mm/yyyy" onblur="validateSelectedDateEdit(${i})" onload="setTodayDateEdit(${i})">
+    <input type="date" id="dueDateAddTaskFloating${i}" class="dueDateAddTaskFloating" name="due_date" required placeholder="dd/mm/yyyy" onblur="validateSelectedDateEdit(${i})" onclick="setTodayDateEdit(${i})">
     <div id="alertDateEdit" class="alertMessage"></div>
     `;
 }
@@ -337,10 +337,10 @@ function getSubtasksSectionHTML() {
   return `
     <div class="subtasks">
         <div class="styleSubtasks"><b>Subtasks</b> (optional)</div>
-        <div class="inputWithIcon" onclick="changeIconsSubtaskEdit()">
+        <div class="inputWithIcon">
             <input type="text" placeholder="Add new subtask..." id="subTaskInputEdit" class="subTaskInput">
             <div id="iconContainerSubtasksEdit" class="iconContainerSubtasks">
-            <img id="subTask" class="subTask"  src="assets/img/Subtask's icons.png" class="dropdownIcon">
+            <img id="subTask" class="subTask"  src="assets/img/Subtask's icons.png" class="dropdownIcon" onclick="changeIconsSubtaskEdit()">
         </div>
     </div>
     <div id="subtaskListEdit"></div>`;
@@ -459,12 +459,15 @@ function valueSubtaskEdit() {
   var input = document.getElementById("subTaskInputEdit").value;
   if (input.length > 0) {
     let valueSubtask = document.getElementById("subTaskInputEdit").value;
+    let clearSubtasksContainer = document.getElementById('subtaskListEdit');
+    clearSubtasksContainer.innerHTML = '';
     addSubtasks.push(valueSubtask);
     valueSubtask.innerHTML = "";
     for (let i = 0; i < addSubtasks.length; i++) {
+      let newSubtask = addSubtasks[i];
       document.getElementById("subtaskListEdit").innerHTML += `
       <div id="valueSubtaskContainer${i}" class="valueSubtaskContainer">
-        <li>${valueSubtask}</li>
+        <li>${newSubtask}</li>
         <div class="editDeleteSubtaskIconContainer">
           <img src="assets/img/edit.svg" alt="edit icon" id="editSubtaskIcon" onclick="editSubtaskEdit(${i})">
           <div class="seperaterSubtasks"></div>
@@ -498,6 +501,8 @@ function setTodayDateEdit(i) {
   var dueDateInputEdit = document.getElementById(`dueDateAddTaskFloating${i}`);
   dueDateInputEdit.setAttribute("min", currentDate);
 }
+
+
 function validateSelectedDateEdit(i) {
   var inputDate = document.getElementById(`dueDateAddTaskFloating${i}`).value;
   if (inputDate.length === 10) { 
@@ -543,7 +548,7 @@ function addContactToBoardAndFillEdit() {
             <div class="styleMembersAddTask" id="profilMember${i}"></div>
             <span class="nameMember" id="nameMember${i}"></span>
         </div>
-        <input class="customCheckbox" id="checkboxMember${i}" type="checkbox" onchange="updateStatus(${i})">
+        <input class="customCheckbox" id="checkboxMember${i}" type="checkbox" onclick="checkCheckbox(${i}) onchange="updateStatus(${i})">
     </div>
     `;
       fillContactsOnBoard(i);

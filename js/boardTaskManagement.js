@@ -240,6 +240,9 @@ function deleteSubtask(i) {
       </div>  
         `;
     }
+    if(addSubtasks.length === 0) {
+        addSubtaskStatus = []
+    }
 }
 
 
