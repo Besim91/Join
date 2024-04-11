@@ -22,55 +22,53 @@ async function onload() {
   addTaskFocused();
 }
 
-
 function addTaskFocused() {
-  document.getElementById('addTaskSidemenu').classList.add('sideMenuInFocus');
+  document.getElementById("addTaskSidemenu").classList.add("sideMenuInFocus");
 }
 
 /**
  * Sets today's date in the due date input field.
  */
 function setTodayDate() {
-  var today = new Date().toISOString().split('T')[0];
-  var dueDateInput = document.getElementById('dueDateMainAddTask');
-  dueDateInput.setAttribute('min', today);
+  var today = new Date().toISOString().split("T")[0];
+  var dueDateInput = document.getElementById("dueDateMainAddTask");
+  dueDateInput.setAttribute("min", today);
 }
 
 /**
  * Validates the selected date in the input field 'dueDateMainAddTask'.
  * If the selected date is in the past, it displays an alert and clears the input field.
  * This function is triggered when the input field loses focus.
- * 
+ *
  * @returns {void}
  */
 function validateSelectedDate() {
-  var inputDate = document.getElementById('dueDateMainAddTask').value;
-  if (inputDate.length === 10) { 
-      var selectedDate = new Date(inputDate);
-      var today = new Date();
-      today.setHours(0, 0, 0, 0); 
-      if (selectedDate < today) {
-        dateAlert();
-        document.getElementById('dueDateMainAddTask').value = ''; 
-      }
+  var inputDate = document.getElementById("dueDateMainAddTask").value;
+  if (inputDate.length === 10) {
+    var selectedDate = new Date(inputDate);
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (selectedDate < today) {
+      dateAlert();
+      document.getElementById("dueDateMainAddTask").value = "";
+    }
   }
 }
 
 /**
  * Displays an alert message "Please pick a future date!" for three seconds in the 'alertDate' element.
- * 
+ *
  * @returns {void}
  */
 function dateAlert() {
-  var alertDate = document.getElementById('alertDate');
+  var alertDate = document.getElementById("alertDate");
   if (alertDate) {
     alertDate.innerText = "Please pick a future date!";
-    setTimeout(function() {
+    setTimeout(function () {
       alertDate.innerText = "";
     }, 3000);
   }
 }
-
 
 /**
  * Adds an event listener to the document that triggers when the DOM content is fully loaded.
@@ -78,68 +76,66 @@ function dateAlert() {
  * Additionally, adds an event listener to the 'dueDateMainAddTask' input field.
  * When the input field loses focus, it triggers the 'validateSelectedDate' function to ensure
  * that the selected date is today or in the future.
- * 
+ *
  * @param {string} type - The event type to listen for ('DOMContentLoaded').
  * @param {function} listener - The callback function to execute when the event is triggered.
  * @returns {undefined}
  */
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   setTodayDate();
-  document.getElementById('dueDateMainAddTask').onblur = validateSelectedDate;
+  document.getElementById("dueDateMainAddTask").onblur = validateSelectedDate;
 });
-
 
 /**
  * Handles the form submission event for adding a task.
  * Displays alert messages if required fields are empty or if a valid category is not selected.
- * 
+ *
  * @param {Event} event - The form submission event.
  * @returns {void}
  */
 function handleTaskForm(event) {
   event.preventDefault();
   if (titleMainAddTask.value === "") {
-      alertTitel();
-      return;
+    alertTitel();
+    return;
   }
   if (dueDateMainAddTask.value === "") {
-      alertDate();
-      return;
+    alertDate();
+    return;
   }
   if (currentPriority === undefined) {
-      alertPrio();
-      return;
+    alertPrio();
+    return;
   }
   if (
-      selectedCategoryInput !== "User Story" &&
-      selectedCategoryInput !== "Technical Task"
+    selectedCategoryInput !== "User Story" &&
+    selectedCategoryInput !== "Technical Task"
   ) {
-      alertCategory();
-      return;
+    alertCategory();
+    return;
   }
   continueTaskFormHandling();
 }
 
 /**
-* Handles the remaining task form handling process after all validations are passed.
-* 
-* @returns {void}
-*/
+ * Handles the remaining task form handling process after all validations are passed.
+ *
+ * @returns {void}
+ */
 function continueTaskFormHandling() {
   if (
-      selectedCategoryInput !== "User Story" &&
-      selectedCategoryInput !== "Technical Task"
+    selectedCategoryInput !== "User Story" &&
+    selectedCategoryInput !== "Technical Task"
   ) {
-      var alertMessage = document.getElementById("alertCategory");
-      alertMessage.innerHTML = "Please select a valid category!";
+    var alertMessage = document.getElementById("alertCategory");
+    alertMessage.innerHTML = "Please select a valid category!";
   } else {
-      fillArray();
-      togglePriority(activePriority);
-      clearAddTaskFloating();
-      showAlert();
+    fillArray();
+    togglePriority(activePriority);
+    clearAddTaskFloating();
+    showAlert();
   }
 }
-
 
 /**
  * Displays an alert if no title is entered.
@@ -264,7 +260,9 @@ function showIconsPrio(priority) {
  * Renders contacts on the board.
  */
 
-function renderContactsOnBoard() {
+function 
+
+tsOnBoard() {
   // Clear the contact list container
   document.getElementById("listContactContainerMain").innerHTML = ``;
   let contactBoard = document.getElementById("listContactContainerMain");
@@ -295,10 +293,10 @@ function renderContactsOnBoard() {
   }
 }
 
+
 /**
  * Adds checkbox status.
  */
-
 function addCheckboxStatus() {
   for (let i = 0; i < mainUserInfos[0]["contactBook"].length; i++) {
     let checkbox = document.getElementById(`checkboxMember${i}`);
@@ -310,7 +308,6 @@ function addCheckboxStatus() {
  * Updates  the status of the contact
  * @param {number} i - The index of the contact.
  */
-
 function updateStatus(i) {
   let checkbox = document.getElementById(`checkboxMember${i}`);
   if (checkbox.checked) {
@@ -398,13 +395,12 @@ function valueSubtask() {
     }
   } else {
     alertMessageTitel();
-    }
+  }
 }
-
 
 /**
  * Displays an alert message for subtask title input.
- * 
+ *
  * @returns {void}
  */
 function alertMessageTitel() {
@@ -551,7 +547,6 @@ function pushMembers() {
   }
 }
 
-
 /**
  * Changes the icons for subtasks and handles their functionalities.
  */
@@ -666,8 +661,8 @@ function deleteSubtask(i) {
   var elementToRemove = document.getElementById(`valueSubtaskContainer${i}`);
   elementToRemove.remove();
   addSubtasks.splice(i, 1);
-  let clear = document.getElementById('subtaskListMain');
-  clear.innerHTML = ''; 
+  let clear = document.getElementById("subtaskListMain");
+  clear.innerHTML = "";
   for (let j = 0; j < addSubtasks.length; j++) {
     document.getElementById("subtaskListMain").innerHTML += `
   <div id="valueSubtaskContainer${j}" class="valueSubtaskContainer">
@@ -733,11 +728,10 @@ function clearCurrentall() {
   document.getElementById("subtaskListMain").innerHTML = "";
 }
 
-
 /**
  * Handles the click event for priority selection.
  * Resets background colors, toggles background color for the selected priority, and adds the priority value.
- * 
+ *
  * @param {string} priorityType - The type of priority clicked.
  * @returns {void}
  */

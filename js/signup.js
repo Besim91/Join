@@ -5,6 +5,7 @@
 async function onload() {
   await getRemoteUsers();
   displayMessage();
+  await loadRememberedCredentials();
 }
 
 /**
@@ -137,4 +138,3 @@ function togglePasswordConfirmVisibility() {
     togglePasswordConfirmIcon.src = "assets/img/eyecloseregular.svg";
   }
 }
-

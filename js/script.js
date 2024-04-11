@@ -5,7 +5,6 @@ let currentUserMail;
  * Retrieves the email and password entered by the user, saves the email to session storage,
  * checks if the email and password are valid, and redirects the user to the summary page if the credentials are correct.
  */
-
 async function loginForm() {
   let email = document.getElementById("email").value.toLowerCase();
   currentUserMail = Array.of(email);
@@ -29,7 +28,6 @@ async function loginForm() {
  * Saves the current user's email to session storage.
  * @param {string[]} currentUserMail - The current user's email.
  */
-
 function saveCurrentUserMailToSessionStorage(currentUserMail) {
   if (typeof Storage !== "undefined") {
     sessionStorage.setItem("currentUserMail", JSON.stringify(currentUserMail));
@@ -43,7 +41,6 @@ function saveCurrentUserMailToSessionStorage(currentUserMail) {
  * Retrieves the current user's email from session storage.
  * @returns {string[]} The current user's email.
  */
-
 function getCurrentUserMailFromSessionStorage() {
   if (typeof Storage !== "undefined") {
     const currentUserMailJSON = sessionStorage.getItem("currentUserMail");
@@ -71,13 +68,11 @@ function getCurrentUserMailFromSessionStorage() {
  * @param {string} email - The user's email.
  * @param {string} password - The user's password.
  */
-
 async function proofUser(user, email, password) {
   const emailErrorElement = document.getElementById("emailError");
   const phoneErrorElement = document.getElementById("phoneError");
   emailErrorElement.textContent = "";
   phoneErrorElement.textContent = "";
-
   if (user) {
     if (user.password === password) {
       console.log("Benutzer gefunden:", user);
@@ -107,7 +102,6 @@ async function proofUser(user, email, password) {
 /**
  * Loads user data for the login process.
  */
-
 async function loadUsersForLogin() {
   users = JSON.parse(await getItem("users"));
   onload();
@@ -116,7 +110,6 @@ async function loadUsersForLogin() {
 /**
  * Clears the remember me checkbox and associated input fields.
  */
-
 async function clearRememberCheckbox() {
   let rememberCheckbox = document.getElementById("rememberCheckbox");
   let emailInput = document.getElementById("email");
@@ -130,7 +123,6 @@ async function clearRememberCheckbox() {
 /**
  * Clears stored login credentials.
  */
-
 async function clearCredentials() {
   try {
     await setItem("rememberedEmail", "");
@@ -145,24 +137,25 @@ async function clearCredentials() {
  * Handles the remember me functionality.
  * It saves the email and password if the remember checkbox is checked.
  */
-
 async function rememberMe() {
   console.log("rememberMe() wird aufgerufen!");
   const rememberCheckbox = document.getElementById("rememberCheckbox");
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
-  if (rememberCheckbox && rememberCheckbox.checked) {
+  if (rememberCheckbox.checked) {
     const rememberedEmail = await getItem("rememberedEmail");
     const rememberedPassword = await getItem("rememberedPassword");
-    if (rememberedEmail !== emailInput.value) {
-      const user = users.find((u) => u.email === emailInput.value);
-      if (user) {
-        passwordInput.value = user.password || "";
+    if (rememberedEmail === emailInput.value) {
+      emailInput.value = rememberedEmail;
+      if (rememberedPassword) {
+        passwordInput.value = rememberedPassword;
       }
     }
     try {
       await setItem("rememberedEmail", emailInput.value);
-      await setItem("rememberedPassword", passwordInput.value);
+      if (rememberCheckbox.checked) {
+        await setItem("rememberedPassword", passwordInput.value);
+      }
       await setItem("rememberCheckbox", true);
       console.log("Anmeldeinformationen erfolgreich gespeichert.");
     } catch (error) {
@@ -171,21 +164,27 @@ async function rememberMe() {
   } else {
     await clearCredentials();
   }
-  await loadRememberedCredentials();
+}
+
+function clearPasswort() {
+  document.getElementById("password").value = "";
 }
 
 /**
  * Loads stored login credentials if the remember checkbox was previously checked.
  */
-
 async function loadRememberedCredentials() {
+  const rememberCheckbox = document.getElementById("rememberCheckbox");
+  const emailInput = document.getElementById("email");
+  const passwordInput = document.getElementById("password");
   try {
     const rememberedEmail = await getItem("rememberedEmail");
     const rememberedPassword = await getItem("rememberedPassword");
     if (rememberedEmail && rememberedPassword) {
-      document.getElementById("email").value = rememberedEmail;
-      document.getElementById("password").value = rememberedPassword;
-      document.getElementById("rememberCheckbox").checked = true;
+      emailInput.value = rememberedEmail;
+      passwordInput.value = rememberedPassword;
+      rememberCheckbox.checked = true; // Checkbox markieren
+      await rememberMe(); // gespeicherten Kontakt hinzufügen
     }
   } catch (error) {
     console.error(
@@ -198,7 +197,6 @@ async function loadRememberedCredentials() {
 /**
  * Redirects the user to the sign-up page.
  */
-
 function signForm() {
   window.location.href = "signup.html";
 }
