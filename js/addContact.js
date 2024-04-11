@@ -21,7 +21,7 @@ async function initContacts() {
  * Adds the 'sideMenuInFocus' class to the contacts side menu, indicating that it is currently in focus.
  */
 function contactsFocused() {
-  document.getElementById('contactsSidemenu').classList.add('sideMenuInFocus');
+  document.getElementById("contactsSidemenu").classList.add("sideMenuInFocus");
 }
 
 /**
@@ -164,18 +164,21 @@ function pullContact(i) {
 function changeHoverColor(i) {
   if (currentHoverColorId) {
     let previousHoverColor = document.getElementById(currentHoverColorId);
-    previousHoverColor.style.backgroundColor = "";
-    let prevIndex = currentHoverColorId.split("_")[1];
-    document.getElementById(`lN${prevIndex}`).style.color = "";
-    document.getElementById(`lE${prevIndex}`).style.color = "";
+    if (previousHoverColor) {
+      previousHoverColor.style.backgroundColor = "";
+      let prevIndex = currentHoverColorId.split("_")[1];
+      document.getElementById(`lN${prevIndex}`).style.color = "";
+      document.getElementById(`lE${prevIndex}`).style.color = "";
+    }
   }
-
   if (i !== null) {
     let hoverColor = document.getElementById(`contact_${i}`);
-    hoverColor.style.backgroundColor = "rgb(0,92,255)";
-    document.getElementById(`lN${i}`).style.color = "white";
-    document.getElementById(`lE${i}`).style.color = "white";
-    currentHoverColorId = `contact_${i}`;
+    if (hoverColor) {
+      hoverColor.style.backgroundColor = "rgb(0,92,255)";
+      document.getElementById(`lN${i}`).style.color = "white";
+      document.getElementById(`lE${i}`).style.color = "white";
+      currentHoverColorId = `contact_${i}`;
+    }
   } else {
     currentHoverColorId = null;
   }

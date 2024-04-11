@@ -260,9 +260,7 @@ function showIconsPrio(priority) {
  * Renders contacts on the board.
  */
 
-function 
-
-tsOnBoard() {
+function renderContactsOnBoard() {
   // Clear the contact list container
   document.getElementById("listContactContainerMain").innerHTML = ``;
   let contactBoard = document.getElementById("listContactContainerMain");
@@ -292,7 +290,6 @@ tsOnBoard() {
     addCheckboxStatus();
   }
 }
-
 
 /**
  * Adds checkbox status.

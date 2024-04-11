@@ -10,6 +10,12 @@
   align-items: center;
 }
 
+.dropdownIcon:hover {
+  filter: brightness(100%);
+  background-color: #d2e2fe;
+  transform: scale(1.2) rotate(180deg);
+}
+
 .alignItems {
   display: flex;
   align-items: center;
@@ -17,6 +23,7 @@
 
 .dFlex {
   display: flex;
+  background-color: white !important;
 }
 
 .overflowHidden {
@@ -319,7 +326,7 @@
   border-radius: 20px;
   transition: top 0.5s ease-out, left 0.5s ease-in-out;
   padding: 20px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-size: 23px;
   line-height: 27.6px;
@@ -682,7 +689,7 @@
   overflow: hidden;
   white-space: normal;
   text-overflow: ellipsis;
-  word-wrap: break-word; 
+  word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
@@ -744,7 +751,7 @@
   font-size: 19px;
   line-height: 22.8px;
   color: black;
-  word-wrap: break-word; 
+  word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
@@ -815,7 +822,6 @@
   width: 100%;
 }
 
-
 .profileOnBoard {
   border-radius: 100%;
   width: 32px;
@@ -847,7 +853,6 @@
 .membersOverBoardContainer span {
   padding-left: 16px;
 }
-
 
 .categoryHeader {
   height: 79px;
@@ -987,7 +992,7 @@
 
 .activePrioLow {
   color: white !important;
-  background-color: #7AE229 !important;
+  background-color: #7ae229 !important;
 }
 
 .activePrioMedium {
@@ -997,7 +1002,7 @@
 
 .activePrioUrgent {
   color: white;
-  background-color: #FF3D00;
+  background-color: #ff3d00;
 }
 
 #listContactContainer {
@@ -1018,7 +1023,6 @@
   align-items: center;
   justify-content: space-between;
 }
-
 
 .styleMembersAddTask {
   color: white;
@@ -1174,6 +1178,10 @@ th {
   flex-direction: column;
 }
 
+.listContactContainerEdit {
+  flex-direction: column;
+}
+
 .profilMemberContainer {
   display: flex;
   margin-bottom: 10px;
@@ -1264,7 +1272,6 @@ th {
   display: flex;
 }
 
-
 #subtaskList {
   display: flex;
   justify-content: space-between;
@@ -1336,7 +1343,6 @@ th {
   padding: 4px 16px 4px 16px;
 }
 
-
 .valueSubtaskContainer {
   display: flex;
   justify-content: space-between;
@@ -1349,14 +1355,14 @@ th {
 }
 
 .valueSubtaskContainer input:focus {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 19.2px;
 }
 
 .valueSubtaskContainer input {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 19.2px;
@@ -1379,7 +1385,10 @@ th {
   border-bottom: 1px solid rgba(0, 93, 255, 1);
 }
 
-.inputEditSubtask:hover .editDeleteSubtaskIconContainerInProcess .inputEditSubtask:hover img {
+.inputEditSubtask:hover
+  .editDeleteSubtaskIconContainerInProcess
+  .inputEditSubtask:hover
+  img {
   display: flex;
 }
 
@@ -1398,7 +1407,10 @@ th {
   border-bottom: 1px solid rgba(0, 93, 255, 1);
 }
 
-.inputEditSubtaskInProcess:hover .editDeleteSubtaskIconContainerInProcess .inputEditSubtaskInProcess:hover img {
+.inputEditSubtaskInProcess:hover
+  .editDeleteSubtaskIconContainerInProcess
+  .inputEditSubtaskInProcess:hover
+  img {
   display: flex;
 }
 
@@ -1442,7 +1454,6 @@ th {
 }
 
 @media only screen and (max-width: 1420px) {
-
   .styleTasks {
     display: flex;
     max-height: 263px;
@@ -1489,12 +1500,10 @@ th {
     padding: 124px 10px 0px 10px;
   }
 
-
   #addedTask {
     display: none;
   }
 }
-
 
 @media only screen and (max-width: 580px) {
   .addTaskBtn {
@@ -1502,7 +1511,7 @@ th {
   }
 
   .inputSearchContainer {
-    margin-right: 0
+    margin-right: 0;
   }
 
   .titelOverBoard {
@@ -1615,7 +1624,7 @@ th {
 
   .activeAddTask {
     left: 0;
-    padding: 0
+    padding: 0;
   }
 
   .addTaskContainer {
@@ -1654,7 +1663,6 @@ th {
     padding-left: 6px;
     padding-right: 6px;
     padding-top: 16px;
-    ;
   }
 
   #addTaskForm {
@@ -1664,9 +1672,7 @@ th {
 }
 
 @media only screen and (max-width: 350px) {
-
   .tasksOverBoardContainer {
     max-width: 250px;
-
   }
 }

@@ -7,6 +7,11 @@
   }
 }
 
+.dropdownIcon:hover {
+  filter: brightness(100%);
+  background-color: #d2e2fe;
+  transform: scale(1.2) rotate(180deg);
+}
 
 .spaceBetween {
   display: flex;
@@ -260,7 +265,6 @@ img {
   align-items: center;
 }
 
-
 .inputWithIcon:hover {
   cursor: pointer;
 }
@@ -462,19 +466,19 @@ img {
   border-radius: 10px;
 }
 
-.contactsBoardContainer{
+.contactsBoardContainer {
   display: flex;
   justify-content: space-between;
 }
 
-.contactsBoardContainer:hover{
+.contactsBoardContainer:hover {
   cursor: pointer;
   background-color: rgba(27, 110, 255, 0.1);
   border-radius: 10px;
   transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
 }
 
-.assignedBox{
+.assignedBox {
   font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 19px;
@@ -482,7 +486,7 @@ img {
   color: rgba(66, 82, 110, 1);
 }
 
-#categoryDropdownMain{
+#categoryDropdownMain {
   width: 24px;
   height: 24px;
 }
@@ -547,7 +551,6 @@ img {
   align-items: center;
   justify-content: space-between;
 }
-
 
 #listContactContainerMain {
   flex-direction: column;
@@ -804,10 +807,10 @@ input[type="date"]::-webkit-input-placeholder {
 }
 
 .valueSubtaskContainer:hover {
-    cursor: pointer;
-    background-color: rgba(27, 110, 255, 0.1);
-    border-radius: 10px;
-    transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
+  cursor: pointer;
+  background-color: rgba(27, 110, 255, 0.1);
+  border-radius: 10px;
+  transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
   padding: 4px 16px 4px 16px;
 }
 
@@ -835,10 +838,10 @@ input[type="date"]::-webkit-input-placeholder {
 }
 
 .inputEditSubtask {
-  border: none; 
+  border: none;
   padding: 4px 16px;
   width: 100%;
-  outline: none; 
+  outline: none;
 }
 
 .inputEditSubtask:focus {
@@ -857,7 +860,7 @@ input[type="date"]::-webkit-input-placeholder {
 }
 
 .inputEditSubtaskInProcess {
-  border: none; 
+  border: none;
   padding: 4px 16px;
   width: 100%;
   outline: none;
