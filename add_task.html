@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" href="css/styleadd.css">
+    <link rel="stylesheet" href="css/styletemplates.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/styleall.css">
+    <script src="js/storage.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/add_task.js"></script>
+    <script src="js/summary.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body onload="onload()">
+    <div w3-include-html="./templates/header.html"></div>
+    <div class="mainContent">
+        <div w3-include-html="./templates/side-menu.html"></div>
+        <div class="sumContainer">
+            <div id="addedTask" class="addedTask">Task added to board <img src="assets/img/vector.svg"></div>
+            <div class="mainAddTaskContainer" id="mainAddTaskFloating">
+                <form id="mainAddTaskForm" onsubmit="handleTaskForm(event)" novalidate>
+                    <input type="text" id="titleMainAddTask" name="title" placeholder="Enter a title" maxlength="50" required>
+                    <div id="alertTitle" class="alertMessage"></div>
+                    <label for="descriptionMainAddTask" class="styleDescription"><span id="descriptionMainTitleAddTask">Description <span
+                                  id="optionalDescriptionTitleMainAddTask">(optional)</span></span></label>
+                    <textarea id="descriptionMainAddTask" name="description" rows="4" cols="50" placeholder="Enter a Description"></textarea>
+                    <label for="dueDateMainAddTask" class="styleDueDate">Due date</label>
+                    <input type="date" id="dueDateMainAddTask" name="due_date" required placeholder="dd/mm/yyyy">
+                    <div id="alertDate" class="alertMessage"></div>
+                    <div class="priority">
+                        <div class="priorityHeader">Priority</div>
+                        <div class="priorityBox">
+                            <div class="urgent" onclick="handlePriorityClick('urgent')">
+                                Urgent
+                                <img class="colorImg" src="assets/img/Prio alta.png" id="urgentIconColor">
+                                <img class="grayImg dNone" src="assets/img/Prio alta (1).png" id="urgentIconGray">
+                            </div>
+                            <div class="medium" onclick="handlePriorityClick('medium')">
+                                Medium
+                                <img class="colorImg" src="assets/img/Prio media (1).png" id="mediumIconColor">
+                                <img class="grayImg dNone" src="assets/img/Prio media.png" id="mediumIconGray">
+                            </div>
+                            <div class="low" onclick="handlePriorityClick('low')">
+                                Low
+                                <img class="colorImg" src="assets/img/Prio baja.png" id="lowIconColor">
+                                <img class="grayImg dNone" src="assets/img/Prio baja (1).png" id="lowIconGray">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="alertPrio" class="alertMessage"></div>
+                    <div class="assigned">
+                        <div class="assignedBox"><b>Assigned to</b> (optional)</div>
+                        <div class="inputWithIcon" onclick="renderContactsOnBoard()">
+                            <input type="text" id="assignedInputMain" placeholder="Select contacts to assign..." readonly>
+                            <img id="icon" src="assets/img/arrow_drop_down.png" class="dropdownIcon">
+                        </div>
+                    </div>
+                    <div id="listContactContainerMain" class="dNone"></div>
+                    <div class="categoryHeader">
+                        <div class="styleCategory"><b>Category</b></div>
+                        <div class="inputWithIcon" onclick="technicalUserMain(), toggleCategory()">
+                            <input type="text" id="categoryInput" placeholder="Select task category..." readonly required>
+                            <img id="categoryDropdownMain" src="assets/img/arrow_drop_down.png" class="dropdownIcon">
+                        </div>
+                        <div id="listTechnicalMain" class="techUser dNone"></div>
+                    </div>
+                    <div id="alertCategory" class="alertMessage"></div>
+                    <div class="subtasks">
+                        <div class="styleSubtasks"><b>Subtasks</b> (optional)</div>
+                        <div class="inputWithIcon">
+                            <input type="text" placeholder="Add new subtask..." id="subTaskInputMain" pattern=".+">
+                            <div id="iconContainerSubtasks">
+                                <img id="subTaskMain" onclick="changeIconsSubtask()" src="assets/img/Subtask's icons.png" class="dropdownIcon">
+                            </div>
+                        </div>
+                        <div id="alertSubtask" class="alertMessage"></div>
+                        <div id="subtaskListMain"></div>
+                    </div>
+                    <div class="buttonBoxResp">
+                        <div class="clearButtonResp">
+                            <button class="clearResp" onclick="clearCurrentall()">Clear <img src="assets/img/iconoir_cancel.png"></button>
+                        </div>
+                        <div class="createButtonResp">
+                            <button class="create" type="submit">Create Task<img src="assets/img/check.png"></button>
+                        </div>
+                    </div>
+            </div>
+            <div class="buttonContainer">
+                <div class="buttonBox">
+                    <div class="clearButton">
+                        <button type="button" class="clear" onclick="clearCurrentall()">Clear <img src="assets/img/iconoir_cancel.png"></button>
+                    </div>
+                    <div class="createButton">
+                        <button class="create" type="submit">Create Task<img src="assets/img/check.png"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+    </div>
+</body>
+
+</html>

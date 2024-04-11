@@ -1,0 +1,973 @@
+@keyframes flyOutToLeft {
+  from {
+    left: calc(50% - 150px);
+  }
+  to {
+    left: -300px;
+  }
+}
+
+
+.spaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.alignItems {
+  display: flex;
+  align-items: center;
+}
+
+.dFlex {
+  display: flex;
+}
+
+.overflowHidden {
+  overflow: hidden;
+}
+
+.dNone {
+  display: none !important;
+}
+
+.jCCenter {
+  display: flex;
+  justify-content: center;
+}
+
+#menuBar.show {
+  visibility: visible;
+}
+
+.width100 {
+  width: 100%;
+}
+
+.sumContainer {
+  display: flex;
+  width: 100%;
+}
+
+.sumContainer h1 {
+  width: 455px;
+  height: 77px;
+  gap: 22px;
+  font-size: 64px;
+  color: #2a3647;
+}
+
+#vector {
+  padding-left: 8px;
+}
+
+.mainContent {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.addedTask {
+  position: fixed;
+  top: -50px;
+  left: calc(50% - 150px);
+  background-color: rgba(69, 137, 255, 1);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 20px;
+  transition: top 0.5s ease-out, left 0.5s ease-in-out;
+  padding: 20px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 23px;
+  line-height: 27.6px;
+  display: flex;
+  align-items: center;
+}
+
+.addedTask.show {
+  top: 96px;
+  left: 232;
+}
+
+.priority {
+  height: 82px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.assigned {
+  height: 79px;
+  gap: 8px;
+}
+
+.categoryHeader {
+  height: 79px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  height: 84px;
+  gap: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.optional {
+  height: 23px;
+  font-size: 19px;
+}
+
+.enter {
+  height: 154px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  color: #42526e;
+}
+
+.medium {
+  width: 136px;
+  padding: 18px 10px 18px 10px;
+  border-radius: 10px;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0px 0px 4px 0px #00000029;
+  background-color: white;
+  color: black;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.medium img {
+  width: 20px;
+  height: 7.45px;
+  padding: 0px 0px 0px 0px;
+}
+
+.low {
+  width: 136px;
+  padding: 18px 10px 18px 10px;
+  border-radius: 10px;
+  gap: 10px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 4px 0px #00000029;
+  background-color: white;
+  transition: background-color 0.3s ease;
+}
+
+.priorityBox {
+  height: 51px;
+  gap: 16px;
+  display: flex;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.priorityHeader {
+  height: 23px;
+  color: #42526e;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.urgent {
+  width: 136px;
+  padding: 18px 10px 18px 10px;
+  border-radius: 10px;
+  gap: 10px;
+  box-shadow: 0px 0px 4px 0px #00000029;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  transition: background-color 0.3s ease;
+  color: black;
+}
+
+.activePrioLow {
+  color: white;
+  background-color: #7ae229;
+}
+
+.activePrioMedium {
+  background-color: #ffa800;
+  color: white;
+}
+
+.activePrioUrgent {
+  color: white;
+  background-color: #ff3d00;
+}
+
+.active {
+  color: black;
+  background-color: inherit !important;
+}
+
+.colorImg {
+  display: inline-block;
+}
+
+.active .colorImg {
+  display: none;
+}
+
+.active .grayImg {
+  display: inline-block;
+}
+
+img {
+  transition: filter 0.3s ease;
+}
+
+.medium:hover {
+  box-shadow: 0px 0px 4px 0px #ffa800;
+}
+
+.low:hover {
+  box-shadow: 0px 0px 4px 0px #7be228;
+}
+
+.urgent:hover {
+  box-shadow: 0px 0px 4px 0px #fe3d01;
+}
+
+.inputWithIcon input {
+  padding: 10px;
+  padding: 12px 16px 12px 16px;
+  border: 0px 0px 1px 0px;
+  justify-content: space-between;
+  border-bottom: 1px solid #d1d1d1 !important;
+  border: none;
+  width: 100%;
+}
+
+.inputWithIcon {
+  display: flex;
+  align-items: center;
+}
+
+
+.inputWithIcon:hover {
+  cursor: pointer;
+}
+
+#assignedInput {
+  width: 100%;
+}
+
+.dropdownIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.inputWithWcon {
+  height: 48px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.clearButton {
+  height: 61px;
+  top: 908px;
+  left: 1063px;
+  gap: 25px;
+  display: flex;
+  padding-right: 80px;
+}
+
+.clearButtonResp {
+  height: 61px;
+  top: 908px;
+  left: 1063px;
+  gap: 25px;
+  display: flex;
+  padding-right: 80px;
+}
+
+.create {
+  height: 60px;
+  padding: 16px 10px 16px 10px;
+  border-radius: 10px;
+  gap: 4px;
+  background-color: #4589ff;
+  color: white;
+  border: 2px solid #4589ff;
+  font-size: 23px;
+  cursor: pointer;
+  display: flex;
+}
+
+.clear {
+  width: 136px;
+  height: 61px;
+  padding: 16px 10px 16px 10px;
+  border-radius: 10px;
+  border: 1px;
+  gap: 10px;
+  background-color: white;
+  color: #647188;
+  font-size: 23px;
+  border: 1px solid #647188;
+  display: flex;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.clearResp {
+  width: 136px;
+  height: 61px;
+  padding: 16px 10px 16px 10px;
+  border-radius: 10px;
+  border: 1px;
+  gap: 10px;
+  background-color: white;
+  color: #647188;
+  font-size: 23px;
+  border: 1px solid #647188;
+  display: flex;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.contactsBoardContainerChild {
+  display: flex;
+  align-items: center;
+}
+
+.styleMembersAddTask {
+  color: white;
+  border-radius: 100%;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.nameMember {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.customCheckbox {
+  margin-right: 16px;
+}
+
+.clearButton img {
+  width: 24px;
+  height: 24px;
+}
+
+.clearButtonResp img {
+  width: 24px;
+  height: 24px;
+}
+
+.buttonBox {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-right: 80px;
+  margin-bottom: 60px;
+}
+
+.buttonBoxResp {
+  display: flex;
+  padding-right: 80px;
+  margin-bottom: 60px;
+  display: none;
+}
+
+.createButton {
+  height: 61px;
+  top: 908px;
+  left: 1063px;
+  gap: 25px;
+  display: flex;
+  padding-right: 80px;
+}
+
+.createButton button:hover {
+  background-color: #1c6ffe;
+  color: white;
+  border-color: #4589ff;
+}
+
+.createButtonResp {
+  height: 61px;
+  top: 908px;
+  left: 1063px;
+  gap: 25px;
+  display: flex;
+  padding-right: 80px;
+}
+
+.createButtonResp button:hover {
+  background-color: #1c6ffe;
+  color: white;
+  border-color: #4589ff;
+}
+
+.clearButton button:hover {
+  background-color: white;
+  color: #4589ff;
+  border-color: #4589ff;
+}
+
+.clearButtonResp button:hover {
+  background-color: white;
+  color: #4589ff;
+  border-color: #4589ff;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.listContact {
+  display: flex;
+  gap: 16px;
+  border-radius: 10px;
+  background-color: transparent;
+  padding: 7px 16px 7px 16px;
+  border: none;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.listContact:hover {
+  cursor: pointer;
+  background-color: rgba(27, 110, 255, 0.1);
+  border-radius: 10px;
+}
+
+.contactsBoardContainer{
+  display: flex;
+  justify-content: space-between;
+}
+
+.contactsBoardContainer:hover{
+  cursor: pointer;
+  background-color: rgba(27, 110, 255, 0.1);
+  border-radius: 10px;
+  transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.assignedBox{
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 25.2px;
+  color: rgba(66, 82, 110, 1);
+}
+
+#categoryDropdownMain{
+  width: 24px;
+  height: 24px;
+}
+
+#listContactContainerMain {
+  z-index: 100000;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 16px;
+}
+
+.box {
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+}
+
+.listContact.active {
+  background-color: #005dff !important;
+  color: white;
+  border: 2px solid white;
+}
+
+.listContact.active .box {
+  border-color: white;
+}
+
+.techUser {
+  display: flex;
+  gap: 16px;
+  border-radius: 10px;
+  background-color: white;
+  padding: 7px 16px 7px 16px;
+  border: none;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.techUser:hover {
+  background-color: rgba(27, 110, 255, 0.1);
+}
+
+.select:hover {
+  background-color: rgba(27, 110, 255, 0.1);
+  border-radius: 10px;
+}
+
+.select {
+  padding: 7px 16px;
+  transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.contactUser {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+#listContactContainerMain {
+  flex-direction: column;
+}
+
+.styleCategory {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 25.2px;
+  color: rgba(66, 82, 110, 1);
+}
+
+#categoryInput {
+  width: 100%;
+  font-family: "Opens Sans", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 22.8px;
+}
+
+#categoryInput::placeholder {
+  width: 100%;
+  color: black;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 22.8px;
+}
+
+#categoryInput:focus {
+  outline: none;
+}
+
+.styleSubtasks {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 25.2px;
+  color: rgba(66, 82, 110, 1);
+}
+
+#subTaskInputMain {
+  width: 100%;
+  font-family: "Opens Sans", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 22.8px;
+}
+
+#subTaskInputMain::placeholder {
+  color: rgba(209, 209, 209, 1);
+  font-family: "Opens Sans", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 22.8px;
+}
+
+#subTaskInputMain:focus {
+  outline: none;
+}
+
+#listTechnicalMain {
+  height: 100%;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.alertMessage {
+  width: 100%;
+  color: red;
+  font-size: 12px;
+  padding-top: 16px;
+}
+
+#assignedInputMain {
+  width: 100%;
+}
+
+#assignedInputMain::placeholder {
+  color: black;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+}
+
+#assignedInputMain:focus {
+  outline: none;
+}
+
+#titleMainAddTask {
+  height: 64px;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  padding: 13px 16px;
+  border-color: rgba(209, 209, 209, 1);
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38.4px;
+  color: black;
+}
+
+#titleMainAddTask:focus {
+  outline: none;
+}
+
+#titleMainAddTask::placeholder {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38.4px;
+  color: rgba(209, 209, 209, 1);
+}
+
+.styleDescription {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 25.2px;
+  color: rgba(66, 82, 110, 1);
+}
+
+#optionalDescriptionTitleMainAddTask {
+  font-weight: 400;
+}
+
+#descriptionMainAddTask {
+  width: 100%;
+  border: none;
+  border: 1px solid rgba(209, 209, 209, 1);
+  resize: none;
+  margin-bottom: 24px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 22.8px;
+  border-radius: 0px 10px 10px 10px;
+}
+
+#descriptionMainAddTask::placeholder {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 22.8px;
+  color: rgba(209, 209, 209, 1);
+  border: none;
+}
+
+#descriptionMainAddTask:focus {
+  outline: none;
+}
+
+#mainAddTaskForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainAddTaskContainer {
+  height: calc(100vh - 120px);
+  padding-top: 120px;
+  padding-left: 24px;
+  min-width: 440px;
+  padding-right: 24px;
+  overflow-y: scroll;
+}
+
+.styleDueDate {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 25.2px;
+  color: rgba(66, 82, 110, 1);
+}
+
+.styleDueDate th {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 22.8px;
+  color: black;
+}
+
+#dueDateMainAddTask {
+  width: 100%;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 22.8px;
+  border: none;
+}
+
+#dueDateMainAddTask:focus {
+  outline: none;
+}
+
+input[type="date"]::-webkit-input-placeholder {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 22.8px;
+  color: rgba(209, 209, 209, 1);
+}
+
+#dueDateMainAddTask:hover {
+  cursor: pointer;
+}
+
+#dueDateMainAddTask img:hover {
+  cursor: pointer;
+}
+
+#subtaskListMain {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 16px 4px 16px;
+  position: relative;
+  cursor: pointer;
+  flex-direction: column;
+}
+
+.editDeleteSubtaskIconContainer {
+  display: flex;
+  align-items: center;
+  display: none;
+}
+
+#subtaskListMain li {
+  padding-left: 16px;
+}
+
+.seperaterSubtasks {
+  width: 1px;
+  background-color: rgba(209, 209, 209, 1);
+  height: 24px;
+  margin-left: 8px;
+  margin-right: 8px;
+  display: none;
+}
+
+#iconContainerSubtasks {
+  display: flex;
+}
+
+.valueSubtaskContainer:hover .seperaterSubtasks,
+.valueSubtaskContainer:hover img,
+.valueSubtaskContainer:hover .editDeleteSubtaskIconContainer {
+  display: flex;
+}
+
+.valueSubtaskContainer:hover .seperaterSubtasks,
+.valueSubtaskContainer:hover img,
+.valueSubtaskContainer:hover .editDeleteSubtaskIconContainerInProcess {
+  display: flex;
+}
+
+.valueSubtaskContainer:hover {
+    cursor: pointer;
+    background-color: rgba(27, 110, 255, 0.1);
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out, padding 0.3s ease-in-out;
+  padding: 4px 16px 4px 16px;
+}
+
+.valueSubtaskContainer:hover input {
+  background-color: RGB(227, 238, 255);
+}
+
+.valueSubtaskContainer input:focus {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.2px;
+}
+
+.valueSubtaskContainer input {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.2px;
+}
+
+.valueSubtaskContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputEditSubtask {
+  border: none; 
+  padding: 4px 16px;
+  width: 100%;
+  outline: none; 
+}
+
+.inputEditSubtask:focus {
+  border-bottom: 1px solid rgba(0, 93, 255, 1);
+}
+
+.inputEditSubtask:hover
+  .editDeleteSubtaskIconContainerInProcess
+  .inputEditSubtask:hover
+  img {
+  display: flex;
+}
+
+.editDeleteSubtaskIconContainerInProcess {
+  display: none;
+}
+
+.inputEditSubtaskInProcess {
+  border: none; 
+  padding: 4px 16px;
+  width: 100%;
+  outline: none;
+}
+
+.inputEditSubtaskInProcess:focus {
+  border-bottom: 1px solid rgba(0, 93, 255, 1);
+}
+
+.inputEditSubtaskInProcess:hover
+  .editDeleteSubtaskIconContainerInProcess
+  .inputEditSubtaskInProcess:hover
+  img {
+  display: flex;
+}
+
+@media only screen and (max-width: 1360px) {
+  .buttonContainer {
+    display: none;
+  }
+
+  .buttonBoxResp {
+    display: flex;
+    margin-top: 24px;
+  }
+
+  .mainAddTaskContainer {
+    max-width: none;
+    width: 100%;
+  }
+
+  .create {
+    width: 100%;
+    width: 175px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .mainAddTaskContainer {
+    min-width: 0;
+  }
+
+  .buttonBoxResp {
+    display: flex;
+  }
+
+  .buttonBoxResp button {
+    margin-right: 16px;
+  }
+
+  .priorityBox {
+    gap: 4px;
+    font-size: 16px;
+  }
+
+  .buttonBox {
+    padding-right: 0;
+  }
+
+  .subtasks {
+    margin-bottom: 20px;
+  }
+
+  .subtasks {
+    height: unset;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .priorityBox div {
+    width: 25%;
+  }
+  .clearresp {
+    display: none;
+  }
+  .buttonBoxResp {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .buttonBoxResp div {
+    margin: 0;
+    padding: 0;
+  }
+
+  #titleMainAddTask::placeholder {
+    font-size: 28px;
+  }
+
+  #descriptionMainTitleAddTask {
+    font-size: 16px;
+  }
+
+  #dueDateMainAddTask {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .priorityBox {
+    font-size: 14px;
+  }
+
+  .priorityBox img {
+    width: 14px;
+  }
+  .priorityBox div {
+    flex-direction: column;
+  }
+}

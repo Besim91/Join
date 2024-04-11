@@ -1,0 +1,786 @@
+.main-content {
+  display: flex;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.menu-bar {
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: absolute;
+  background-color: white;
+  border-radius: 16px 0px 16px 16px;
+  box-shadow: -1px 9px 8px -1px rgb(214, 214, 214);
+  padding: 10px;
+  z-index: 1;
+  top: 100px;
+  right: 0;
+  width: 120px;
+  text-align: right;
+}
+
+.dNoneMenubar {
+  display: none;
+}
+
+.menu-bar a {
+  text-decoration: none;
+  color: black !important;
+}
+
+.menu-item {
+  cursor: pointer;
+  font-family: Open Sans;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 6px 8px 6px 8px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.menu-item:hover {
+  background-color: rgb(210, 226, 255) !important;
+}
+
+.summaryContainerHead h1 {
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.summaryContainerHead {
+  display: flex;
+  padding: 120px 60px 0px 60px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex50 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.privacyBox {
+  top: 289px;
+  left: 320px;
+  gap: 24px;
+  padding: 0px 60px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter";
+}
+
+.privacyBox h1,
+h2 {
+  font-size: 33px;
+  font-weight: 700;
+  color: #4589ff;
+}
+
+.privacyContainer {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.privacyContainer::-webkit-scrollbar {
+  display: none; /* Diese Eigenschaft blendet die Scrollleiste aus */
+}
+
+.arrowContainer {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  flex-direction: column;
+  padding: 60px 60px;
+  justify-content: flex-start;
+  border-radius: 50%;
+}
+
+.arrowContainer img:hover {
+  cursor: pointer;
+  filter: brightness(100%); /* Hellere Farbe beim Hover */
+  background-color: #d2e2fe; /* Neue Hintergrundfarbe beim Hover */
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+}
+
+.header {
+  display: flex;
+  position: absolute;
+  z-index: 10;
+  justify-content: space-between;
+  background-color: #4589ff;
+  box-shadow: 0px 4px 4px 0px #0000001a;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  padding-right: 2%;
+  padding-left: 2%;
+}
+
+.kanban {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  color: white;
+  cursor: pointer;
+  width: 433px;
+  justify-content: space-between;
+}
+
+.next {
+  margin: 0;
+}
+
+.buttonSize {
+  background-color: white;
+  color: #29abe2;
+  font-weight: 700;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+  height: 56px;
+  width: 56px;
+  border-radius: 100px;
+  border: solid white 2px;
+}
+
+.help-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #4589ff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.help-button span {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.help-button:hover span {
+  transform: scale(1.2);
+}
+
+.buttonSize:hover .profile-icon {
+  filter: brightness(90%);
+}
+
+.sideBoard {
+  padding-top: 162px;
+  width: 232px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.sideBoard a {
+  width: 160px;
+  height: 40px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: flex;
+  gap: 8px;
+  box-sizing: border-box;
+  padding: 8px 16px;
+  color: black;
+}
+
+.sideBoard a:hover {
+  color: #42526e;
+  background-color: #d2e2fe;
+}
+
+.sideBoard a.active,
+.sideAdd a.active {
+  background-color: #d2e3ff !important;
+}
+
+.sideBoard img {
+  width: 22px;
+  height: 22px;
+}
+
+.sideBoardLogin {
+  padding-top: 300px;
+}
+
+.sideBoardChild2 {
+  display: flex;
+  flex-direction: column;
+  padding-top: 300px;
+}
+
+.sideBoardChild2 a:hover {
+  background-color: unset;
+  color: #4589ff;
+}
+
+.sideBoard .sideBoardChild2 a.active {
+  background-color: #4589ff !important;
+  color: white;
+}
+
+.sideBoardOffline {
+  display: none;
+}
+
+.sideBoardOffline a.active {
+  background-color: #4589ff;
+  color: white;
+}
+
+#logo {
+  cursor: pointer;
+}
+
+.sideBoardContainer {
+  width: 232px;
+  height: 100vh;
+}
+
+#userInitial {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 7px;
+}
+
+#policyLink:hover,
+#legalLink:hover {
+  background-color: unset;
+  color: #4589ff;
+}
+
+@media (max-width: 1100px) {
+  #greeting,
+  #user-name {
+    font-size: 40px !important;
+  }
+
+  #upcomingDateCounter {
+    font-size: 32px;
+  }
+
+  .chartAtPulledContact {
+    font-size: 40px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .button-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: unset;
+  }
+
+  .menu-bar {
+    right: 30px;
+  }
+
+  .kanban {
+    justify-content: flex-end;
+    gap: 5px;
+  }
+
+  .sideBoardOffline {
+    display: none;
+  }
+
+  .sideBoard {
+    padding-top: unset !important;
+  }
+
+  .dFlexd {
+    display: unset;
+  }
+
+  .kanban p {
+    display: none;
+  }
+
+  .header {
+    padding: 10px 10px 10px 10px;
+  }
+
+  .headline img {
+    max-width: 10vw;
+  }
+
+  .clear-button {
+    padding-right: 5px;
+  }
+
+  .clear-button-resp {
+    padding-right: 5px;
+  }
+
+  .buttonSize {
+    padding: unset;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .main-content {
+    justify-content: flex-start;
+    display: unset;
+  }
+
+  #helpLink {
+    display: none;
+  }
+
+  .dNoneMenubar {
+    display: unset;
+  }
+
+  .menu-item:hover {
+    background-color: unset;
+  }
+
+  .menu-item {
+    color: #4589ff !important;
+  }
+
+  .greatName {
+    display: none;
+  }
+  .taskOnBoard {
+    width: 100% !important;
+  }
+
+  .listContact {
+    gap: 16px;
+  }
+
+  .chartAt {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  #statusLink {
+    height: 100px;
+  }
+
+  .tasks {
+    justify-content: space-around;
+  }
+
+  .summaryContainerHead {
+    gap: 32px;
+  }
+
+  .urgendAlert {
+    width: 100%;
+  }
+
+  .date {
+    flex-wrap: wrap;
+  }
+
+  #statusLink {
+    aspect-ratio: unset;
+  }
+
+  .flex50.column {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .flex50 {
+    gap: unset;
+    width: 100%;
+  }
+
+  .alignItems {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .sideBoard a {
+    gap: unset;
+    height: 100%;
+    width: 20%;
+  }
+
+  .flex50.column a {
+    text-decoration: none;
+  }
+
+  .flex50.column a img {
+    filter: brightness(0.5);
+  }
+
+  .sideBoard a:hover {
+    background-color: unset;
+    color: #4589ff;
+    filter: brightness(0) saturate(100%) invert(41%) sepia(69%) saturate(1537%)
+      hue-rotate(203deg) brightness(102%) contrast(100%);
+  }
+
+  .kanban {
+    justify-content: flex-end;
+    gap: 5px;
+  }
+
+  .kanban p {
+    display: none;
+  }
+
+  .headline img {
+    max-width: 10vw;
+  }
+
+  .sum-container h1 {
+    font-size: 36px;
+  }
+
+  .contactsContainer h1 {
+    font-size: 36px;
+  }
+
+  .privacyBox h1,
+  h2 {
+    font-size: 23px;
+  }
+
+  .privacyBox {
+    padding: 10px 10px 10px 10px;
+  }
+
+  .arrowContainer {
+    padding: 30px 10px;
+  }
+
+  .buttonSize {
+    padding: unset;
+  }
+
+  .create-button {
+    padding-right: unset;
+  }
+
+  .summaryContainerHead h1 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .column {
+    display: block;
+  }
+
+  .sideBoard {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    z-index: 1000;
+    padding-top: unset;
+    height: 60px;
+  }
+
+  .sideBoardContainer {
+    width: unset;
+    height: unset;
+  }
+
+  .main-content {
+    padding-bottom: 56px;
+    height: 870px;
+  }
+}
+
+@media (max-width: 550px) {
+  .statusText {
+    font-weight: unset !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .sideBoard a {
+    width: 80px !important;
+    font-size: 14px;
+    padding: 8px 0px 8px 0px;
+  }
+}
+
+@media (max-width: 440px) {
+  .chartAtPulledContact {
+    width: 100px;
+    height: 100px;
+    font-size: 40px;
+  }
+
+  .statusText {
+    font-weight: unset !important;
+  }
+
+  .functionNameTextOne {
+    text-align: center;
+    font-size: 32px;
+  }
+
+  .inputContainerOne img {
+    display: none;
+  }
+  .inputContainerTwo img {
+    display: none;
+  }
+  .inputContainerThree img {
+    display: none;
+  }
+
+  .lowerBody form {
+    gap: 16px;
+  }
+
+  .functionNameTextTwo {
+    text-align: center;
+  }
+
+  .statusTextUrgent {
+    font-size: 14px;
+  }
+
+  #upcomingDateCounter {
+    font-size: 24px;
+  }
+
+  .urgendStyleSummary {
+    width: 100px;
+  }
+
+  .statusSubDiv {
+    gap: 6px;
+  }
+
+  #statusLink img {
+    width: 54px;
+  }
+
+  #taskInBoardCounter {
+    font-size: 32px;
+  }
+
+  .statusText {
+    font-size: 16px;
+  }
+
+  .tasks {
+    gap: 10px;
+  }
+}
+
+/* ---------- Besim ---------- */
+
+@media (max-width: 980px) {
+  #pullContactToWindow {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+  }
+
+  #listContactContainer {
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+  }
+
+  .responsivDots {
+    visibility: visible;
+  }
+
+  .responsivHeader {
+    visibility: visible;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .sum-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .contactsContainer {
+    width: 100%;
+    padding-top: 150px;
+    height: 100vh;
+  }
+
+  #editAndDeletetContainer {
+    width: 116px;
+    height: 100px;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 24px 24px 0px 24px;
+    border: 1px solid grey;
+    gap: 8px;
+    box-shadow: silver 0px 5px 2px;
+    position: absolute;
+    bottom: 190px;
+    right: 32px;
+    transform: translateX(200%);
+    transition: all 100ms ease-in-out;
+    z-index: 99;
+  }
+
+  .addContactButtonContainerResponsivTwo {
+    visibility: visible;
+  }
+
+  .pulledHeadline {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .pulledInformation {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .pulledInformation h2 {
+    display: none;
+  }
+
+  .addContactSlideCard {
+    width: 90%;
+  }
+
+  .radiusLeft {
+    border-radius: 25px 25px 0px 0px;
+  }
+  .radiusRight {
+    border-radius: 25px 25px 0px 0px;
+  }
+
+  .inputLowerBody {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .editDeleteSlideCard {
+    width: 90%;
+  }
+
+  .slideOpen {
+    height: 80vh;
+    border-radius: 25px !important;
+    margin-top: 100px;
+    box-shadow: 0px 0px 24px grey;
+    z-index: 9999;
+    transform: translateX(-6%) !important;
+  }
+
+  .slideOpenEdit {
+    height: 80vh;
+    border-radius: 25px !important;
+    margin-top: 100px;
+    box-shadow: 0px 0px 24px grey;
+    z-index: 9999;
+    transform: translateX(5%) !important;
+  }
+
+  .addContactButtonContainerResponsiv {
+    visibility: visible;
+  }
+
+  .upperBody img {
+    display: none;
+  }
+
+  .closeAddContactBtn {
+    display: none;
+  }
+  .functionNameTextTwo {
+    font-size: 20px;
+  }
+
+  .lowerBodyDiv {
+    height: unset;
+  }
+
+  .lowerBody {
+    position: relative;
+  }
+
+  .editDeleteSlideCard {
+    transform: translateX(200%);
+    transition: all 100ms ease-in-out;
+  }
+
+  .lowerBodyBtnContainer {
+    padding-top: 40px;
+  }
+
+  .closeX {
+    font-size: 54px;
+    right: 32px;
+  }
+  .closeXEdit {
+    font-size: 54px;
+    right: 32px !important;
+    left: unset;
+  }
+
+  .createUserBtn {
+    width: 80%;
+  }
+
+  .userImgLowerBody {
+    display: none;
+  }
+
+  .addContactButtonContainer {
+    display: none;
+  }
+
+  .editAndDeletetBtn {
+    font-size: 18px;
+  }
+
+  .pencilAndTrashImg {
+    width: 20px;
+  }
+
+  #user-name {
+    font-size: 46px;
+  }
+
+  .greatName {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 980px) {
+  .responsivHeader {
+    visibility: hidden;
+  }
+}

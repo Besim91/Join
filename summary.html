@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join summary</title>
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/styleall.css">
+    <link rel="stylesheet" href="css/stylesummary.css">
+    <link rel="stylesheet" href="css/styletemplates.css">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <script src="js/script.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/summary.js"></script>
+</head>
+
+<body onload="loading()">
+    <div w3-include-html="./templates/header.html"></div>
+    <div class="mainContent">
+        <div w3-include-html="./templates/side-menu.html"></div>
+        <div class="sumContainer">
+            <div class="summaryContainer">
+                <div class="greatName">
+                    <h1 id="greeting"></h1><span id="user-name"></span>
+                </div>
+                <div class="date">
+                    <a class="urgendAlert" href="board.html">
+                        <div class="urgendStyleSummary">
+                            <div class="statusSubDiv">
+                                <img src="./assets/img/Urgent .svg">
+                                <div id="urgendCounter"></div>
+                            </div>
+                            <div class="statusTextUrgent">Tasks Urgent</div>
+                        </div>
+                        <div class="theLine"></div>
+                        <div class="dateAlertDiv">
+                            <div id="upcomingDateCounter"></div>
+                            <div class="statusTextUrgent">Upcomming Deadline</div>
+                        </div>
+                    </a>
+                    <a id="statusLink" class="taskOnBoard hoverDesigne" href="board.html">
+                        <div class="statusSubDiv">
+                            <img src="./assets/img/Board.svg">
+                            <div id="taskInBoardCounter"></div>
+                        </div>
+                        <div class="statusText">Task in Board</div>
+                    </a>
+                </div>
+                <div class="tasks">
+                    <a id="statusLink" class="toDoDesigne" href="board.html">
+                        <div class="statusSubDiv">
+                            <img src="./assets/img/Urgentboard.svg">
+                            <div id="tasksToDoCounter" class="counterDesigne"></div>
+                        </div>
+                        <div class="statusText">Tasks To-do</div>
+                    </a>
+                    <a id="statusLink" class="hoverDesigne" href="board.html">
+                        <div class="statusSubDiv">
+                            <img src="./assets/img/In Progress.svg">
+                            <div id="taskInProgressCounter" class="counterDesigne"></div>
+                        </div>
+                        <div class="statusText">Task in Progress</div>
+                    </a>
+                    <a id="statusLink" class="hoverDesigne" href="board.html">
+                        <div class="statusSubDiv">
+                            <img src="./assets/img/Awaiting feedbaclk.svg">
+                            <div id="awaitingFeedbackCounter" class="counterDesigne"></div>
+                        </div>
+                        <div class="statusText">Awaiting Feedback</div>
+                    </a>
+                    <a id="statusLink" class="hoverDesigne" href="board.html">
+                        <div class="statusSubDiv">
+                            <img src="./assets/img/Done.svg">
+                            <div id="doneCounter" class="counterDesigne"></div>
+                        </div>
+                        <div class="statusText">Tasks Done</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

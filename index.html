@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Join Login Page</title>
+   <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+   <link rel="stylesheet" href="css/style.css">
+   <script src="js/signup.js"></script>
+   <script src="js/script.js"></script>
+   <script src="js/storage.js"></script>
+   <script src="js/summary.js"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+   <link rel="stylesheet" href="./css/fonts.css">
+</head>
+
+<body onload="loadUsersForLogin()">
+   <div class="header">
+      <img src="assets/img/Capa 2 (1).png">
+      <div class="sign">
+         <p class="next">Not a join user?</p>
+         <div>
+            <button class="buttonSize" type="button" onclick="signForm()">Sign up</button>
+         </div>
+      </div>
+   </div>
+   <div class="container">
+      <div class="containerLog">
+         <div class="headline">
+            <div class="inheadline">
+               <h1>Log in</h1>
+            </div>
+            <div class="separator"></div>
+         </div>
+         <div class="section">
+
+            <form onsubmit="loginForm(); return false; " class="onlyInput">
+               <div class="onlyInputNear">
+                  <input type="email" id="email" placeholder="Email" required minlength="3" maxlength="20" required>
+                  <div id="emailError" class="errorMessage"></div>
+                  <img src="assets/img/mail.svg" id="toggleEmail" onclick="toggleEmailVisibility()" alt="Toggle Email Visibility">
+                  <input type="password" id="password" placeholder="Password" minlength="1" required>
+                  <div id="phoneError" class="errorMessage"></div>
+                  <img src="assets/img/eyecloseregular.svg" id="togglePassword" onclick="togglePasswordVisibility()" alt="Toggle Password Visibility">
+               </div>
+
+               <div class="rememberMe">
+                  <div class="checkbox">
+                     <div class="box">
+                        <input type="checkbox" name="remember" id="rememberCheckbox" onclick="rememberMe()">
+                     </div>
+                     <label for="rememberCheckbox">Remember me</label>
+                  </div>
+               </div>
+               <div class="parentBtnDiv">
+                  <div class="buttonContainer ">
+                     <button id="logBtn" class="button-log" type="submit">Log in</button>
+                  </div>
+                  <div class="guest">
+                     <button class="guestButton bot" type="button" onclick="guestToLogin() ">Guest log in</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+         <div id="msgBox"></div>
+      </div>
+   </div>
+
+   <div class="notJoinUser">
+      <span>Not a Join user?</span>
+      <a class="notJoinLink" href="./signup.html">Sign up</a>
+   </div>
+   <div class="footer">
+      <div class="footline">
+         <a href="./guestPrivacy.html" class="policy" id="policyLink">Privacy Policy</a>
+         <a href="./guestLegal.html" class="notice" id="legalLink">Legal Notice</a>
+      </div>
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+           integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>

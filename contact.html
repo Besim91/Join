@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join contacts</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" href="css/stylecontact.css">
+    <link rel="stylesheet" href="css/styletemplates.css">
+    <link rel="stylesheet" href="css/styleall.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/stylesummary.css">
+    <script src="js/templates.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/addContact.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/summary.js"></script>
+</head>
+
+<body onload="initContacts()">
+    <div w3-include-html="./templates/header.html"></div>
+    <section class="mainContentContacts">
+        <div w3-include-html="./templates/side-menu.html" class="sideBoardContainer"></div>
+        <div id="contactsContainer" class="contactsContainer">
+            <div class="addContactButtonContainer">
+                <button onclick="addContact()" class="addToContactButton">
+                    Add new contact <img src="./assets/img/person_add.png">
+                </button>
+            </div>
+            <div id="listContactContainer"></div>
+        </div>
+        <div onclick="closeAddContact()" id="blurContainer" class="blurContainer d-none"></div>
+        <div id="pullContactToWindow" onclick="hiddeResponsivDeleteAndEditBtn()"></div>
+        <div id="addContactSlideCard" class="addContactSlideCard">
+            <div id="upperBody" class="upperBody">
+                <div id="xBtn" onclick="closeAddContact()" class="">×</div>
+                <img src="./assets/img/Capa 1.png" alt="">
+                <div class="functionNameTextOne">Add contact</div>
+                <div class="functionNameTextTwo">Tasks are better with a team!</div>
+            </div>
+            <div class="lowerBody">
+                <div class="lowerBodyDiv">
+                    <form onsubmit="insertContact(event); return false">
+                        <img class="userImgLowerBody" src="./assets/img/benutzer.png" alt="">
+                        <div class="inputContainerOne">
+                            <input id="inputName" class="inputLowerBody" type="text" placeholder="Name" required>
+                            <img class="inputContainerImg" src="./assets/img/profil-avatar.png">
+                        </div>
+                        <div class="inputContainerTwo">
+                            <input id="inputEmail" class="inputLowerBody" type="email" placeholder="Email" required>
+                            <img class="inputContainerImg" src="./assets/img/mail.png">
+                            <div id="emailError" class="error-message"></div>
+                        </div>
+                        <div class="inputContainerThree">
+                            <input id="inputPhone" class="inputLowerBody" type="number" placeholder="Phone" required>
+                            <img class="inputContainerImg" src="./assets/img/anruf.png">
+                            <div id="phoneError" class="error-message"></div>
+                        </div>
+                        <div class="lowerBodyBtnContainer">
+                            <button class="closeAddContactBtn" onclick="closeAddContact()">Cancel ×</button>
+                            <button class="createUserBtn" type="submit">Create Contact ✔</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="editDeleteSlideCard" class="editDeleteSlideCard">
+            <div id="upperBodyEditDelete" class="upperBody">
+                <div id="xCloseBtn" onclick="closeAddContact()" class="">×</div>
+                <img src="./assets/img/Capa 1.png" alt="">
+                <div class="functionNameTextOne">Edit contact</div>
+            </div>
+            <div class="lowerBody">
+                <div class="lowerBodyDiv">
+                    <form onsubmit="saveChanges(event)">
+                        <div id="userImgLowerBody"></div>
+                        <div class="inputContainerOne">
+                            <input id="inputEditName" class="inputLowerBody" type="text" placeholder="Name" required>
+                            <img class="inputContainerImg" src="./assets/img/profil-avatar.png">
+                        </div>
+                        <div class="inputContainerTwo">
+                            <input id="inputEditEmail" class="inputLowerBody" type="email" placeholder="Email" required>
+                            <img class="inputContainerImg" src="./assets/img/mail.png">
+                        </div>
+                        <div class="inputContainerThree">
+                            <input id="inputEditPhone" class="inputLowerBody" type="number" placeholder="Phone" required>
+                            <img class="inputContainerImg" src="./assets/img/anruf.png">
+                        </div>
+                        <div id="editLowerBody" class="lowerBodyBtnContainer">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

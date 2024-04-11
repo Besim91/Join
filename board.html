@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Board</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+    <link rel="stylesheet" href="css/styleboard.css">
+    <link rel="stylesheet" href="css/styletemplates.css">
+    <link rel="stylesheet" href="css/styleall.css">
+    <link rel="stylesheet" href="css/fonts.css">
+
+    <script src="js/templates.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/summary.js"></script>
+    <script src="js/renderBoard.js"></script>
+    <script src="js/editBoard.js"></script>
+    <script src="js/boardTaskManagement.js"></script>
+</head>
+
+<body onload="onload()" id="body">
+    <section w3-include-html="./templates/header.html"></section>
+    <div class="dFlex overflowHidden">
+        <section w3-include-html="./templates/side-menu.html" class="sideBoardContainer"></section>
+        <section id="boardsContainer">
+            <section class="mainBoard column">
+                <div class="searchMainContainer">
+                    <div class="inputSearchContainer"><input oninput="searchTask()" type="text" placeholder="Find Task" id="searchTasksInput">
+                        <div class="searchIconContainer"><img src="./assets/img/search.svg" alt="search Icon" id="searchIcon"></div>
+                    </div>
+                    <button class="addTaskBtn" id="addTaskBtn" onclick="toggleCard(), clearAddTaskFloating()">Add task
+                        <img src="./assets/img/plus.svg" alt="plusIcon">
+                    </button>
+                </div>
+                <div id="taskBoard"></div>
+                <div class="categorysBoardContainer" id="categorysBoardContainer">
+                    <div>
+                        <div id="toDoBoard" class="categorysBoard">
+                            <span><b>To Do</b></span>
+                            <img src="./assets/img/plus_button.svg" class="addTaskBtnPlus" alt="Plus Button" onclick="toggleCard(), setBoxToDo()">
+                        </div>
+                        <div id="toDoTasks" class="styleTasks" ondrop="moveTo('toDoTasks')" ondragover="allowDrop(event)"></div>
+                    </div>
+                    <div>
+                        <div id="inProgressBoard" class="categorysBoard">
+                            <span><b>In progress</b></span>
+                            <img src="./assets/img/plus_button.svg" class="addTaskBtnPlus" alt="Plus Button"
+                                 onclick="toggleCard(), setBoxInProgress()">
+                        </div>
+                        <div id="inProgressTasks" class="styleTasks" ondrop="moveTo('inProgressTasks')" ondragover="allowDrop(event)"></div>
+                    </div>
+                    <div>
+                        <div id="awaitFeedbackBoard" class="categorysBoard">
+                            <span><b>Await feedback</b></span>
+                            <img src="./assets/img/plus_button.svg" class="addTaskBtnPlus" alt="Plus Button"
+                                 onclick="toggleCard(), setBoxAwaitFeedback()">
+                        </div>
+                        <div id="awaitFeedbackTasks" class="styleTasks" ondrop="moveTo('awaitFeedbackTasks')" ondragover="allowDrop(event)">
+                        </div>
+                    </div>
+                    <div>
+                        <div id="doneBoard" class="categorysBoard">
+                            <span><b>Done</b></span>
+                        </div>
+                        <div id="doneTasks" class="styleTasks" ondrop="moveTo('doneTasks')" ondragover="allowDrop(event)">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+        </section>
+    </div>
+    <div id="blurBoardBackground" class="dNone" onclick="closeCard()"></div>
+    </div>
+</body>
+
+</html>
