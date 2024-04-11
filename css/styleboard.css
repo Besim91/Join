@@ -16,6 +16,12 @@
   transform: scale(1.2) rotate(180deg);
 }
 
+#listContactContainerEdit {
+  flex-direction: column;
+  position: relative;
+  background-color: white;
+}
+
 .alignItems {
   display: flex;
   align-items: center;
