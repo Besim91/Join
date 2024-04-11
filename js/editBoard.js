@@ -116,7 +116,7 @@ function addStatusToMembersEdit(i) {
  */
 function technicalUserEdit() {
   let technical = document.getElementById("listTechnicalEdit");
-  technical.classList.remove('dNone');
+  technical.classList.remove("dNone");
   technical.innerHTML = "";
 
   for (let k = 0; k < categorySet.length; k++) {
@@ -200,7 +200,7 @@ function renderSubtaskList() {
 
   for (let i = 0; i < addSubtasks.length; i++) {
     subtaskListEdit.innerHTML += `
-      <div id="valueSubtaskContainer${i}" class="valueSubtaskContainer">
+      <div id="valueSubtaskContainer${i}" class="valueSubtaskContainer" ondblclick="editSubtask(${i})">
         <li>${addSubtasks[i]}</li>
         <div class="editDeleteSubtaskIconContainer">
           <img src="assets/img/edit.svg" alt="edit icon" id="editSubtaskIcon" onclick="editSubtask(${i})">
@@ -236,7 +236,6 @@ document.addEventListener("DOMContentLoaded", function () {
  * @returns {string} Der HTML-Code für das Bearbeitungsformular.
  */
 function getTaskFormHTML(i) {
-  
   return `
     <div class="closeBtnContainer">
         <img src="assets/img/close.svg" alt="close img" onclick="closeCard(${i})" class="closeImg" >
@@ -459,8 +458,8 @@ function valueSubtaskEdit() {
   var input = document.getElementById("subTaskInputEdit").value;
   if (input.length > 0) {
     let valueSubtask = document.getElementById("subTaskInputEdit").value;
-    let clearSubtasksContainer = document.getElementById('subtaskListEdit');
-    clearSubtasksContainer.innerHTML = '';
+    let clearSubtasksContainer = document.getElementById("subtaskListEdit");
+    clearSubtasksContainer.innerHTML = "";
     addSubtasks.push(valueSubtask);
     valueSubtask.innerHTML = "";
     for (let i = 0; i < addSubtasks.length; i++) {
@@ -502,30 +501,29 @@ function setTodayDateEdit(i) {
   dueDateInputEdit.setAttribute("min", currentDate);
 }
 
-
 function validateSelectedDateEdit(i) {
   var inputDate = document.getElementById(`dueDateAddTaskFloating${i}`).value;
-  if (inputDate.length === 10) { 
-      var selectedDate = new Date(inputDate);
-      var today = new Date();
-      today.setHours(0, 0, 0, 0); 
-      if (selectedDate < today) {
-        dateAlertEdit();
-        document.getElementById(`dueDateAddTaskFloating${i}`).value = ''; 
-      }
+  if (inputDate.length === 10) {
+    var selectedDate = new Date(inputDate);
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (selectedDate < today) {
+      dateAlertEdit();
+      document.getElementById(`dueDateAddTaskFloating${i}`).value = "";
+    }
   }
 }
 
 /**
  * Displays an alert message "Please pick a future date!" for three seconds in the 'alertDateEdit' element.
- * 
+ *
  * @returns {void}
  */
 function dateAlertEdit() {
-  var alertDateEdit = document.getElementById('alertDateEdit');
+  var alertDateEdit = document.getElementById("alertDateEdit");
   if (alertDateEdit) {
     alertDateEdit.innerText = "Please pick a future date!";
-    setTimeout(function() {
+    setTimeout(function () {
       alertDateEdit.innerText = "";
     }, 3000);
   }
