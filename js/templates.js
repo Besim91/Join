@@ -11,3 +11,28 @@ async function includeHTML() {
     }
   }
 }
+
+/**
+ * Handles the redirection to the original page after clicking on certain links.
+ * @param {string} [page] - The page to redirect to.
+ */
+
+function returnToOriginalPage(page) {
+  if (page) {
+    window.location.href = page;
+  } else {
+    window.history.back();
+  }
+  document.getElementById("policyLink").addEventListener("click", function () {
+    returnToOriginalPage("privacy.html");
+  });
+  document.getElementById("legalLink").addEventListener("click", function () {
+    returnToOriginalPage("legal.html");
+  });
+  document.getElementById("helpLink").addEventListener("click", function () {
+    returnToOriginalPage("help.html");
+  });
+  function returnToOriginalPage() {
+    history.back();
+  }
+}

@@ -17,7 +17,7 @@ async function loading() {
  * Adds the 'sideMenuInFocus' class to the summary side menu, indicating that it is currently in focus.
  */
 function summaryFocused() {
-  document.getElementById('summarySidemenu').classList.add('sideMenuInFocus');
+  document.getElementById("summarySidemenu").classList.add("sideMenuInFocus");
 }
 
 /**

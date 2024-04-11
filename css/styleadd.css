@@ -80,7 +80,7 @@
 
 .addedTask {
   position: fixed;
-  top: -50px;
+  top: -500px;
   left: calc(50% - 150px);
   background-color: rgba(69, 137, 255, 1);
   color: white;
@@ -909,6 +909,7 @@ input[type="date"]::-webkit-input-placeholder {
 
   .buttonBoxResp button {
     margin-right: 16px;
+    font-size: 20px;
   }
 
   .priorityBox {
