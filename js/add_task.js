@@ -264,10 +264,8 @@ function showIconsPrio(priority) {
  */
 
 function renderContactsOnBoard() {
-  // Clear the contact list container
   document.getElementById("listContactContainerMain").innerHTML = ``;
   let contactBoard = document.getElementById("listContactContainerMain");
-  // Toggle the display of the contact board
   if (contactBoard.classList.contains("dNone")) {
     contactBoard.classList.remove("dNone");
     contactBoard.classList.add("dFlex");
@@ -275,25 +273,29 @@ function renderContactsOnBoard() {
     contactBoard.classList.add("dNone");
     contactBoard.classList.remove("dFlex");
   }
-  // Render contacts if available
   if (mainUserInfos[0]["contactBook"]) {
-    for (let i = 0; i < mainUserInfos[0]["contactBook"].length; i++) {
-      contactBoard.innerHTML += `
-    <div class="contactsBoardContainer" onclick="checkCheckbox(${i})">
-        <div class="contactsBoardContainerChild">   
-            <div class="styleMembersAddTask" id="profilMemberMain${i}"></div>
-            <span class="nameMember" id="nameMemberMain${i}"></span>
-        </div>
-        <input class="customCheckbox" id="checkboxMember${i}" type="checkbox" onclick="checkCheckbox(${i})" onchange="updateStatus(${i})">
-    </div>
-    `;
-      fillContactsOnBoard(i);
-    }
-    assignRandomBackgroundColor();
-    addCheckboxStatus();
+    renderContactbook();
   }
 }
 
+
+
+function renderContactbook() {
+  for (let i = 0; i < mainUserInfos[0]["contactBook"].length; i++) {
+    contactBoard.innerHTML += `
+  <div class="contactsBoardContainer" onclick="checkCheckbox(${i})">
+      <div class="contactsBoardContainerChild">   
+          <div class="styleMembersAddTask" id="profilMemberMain${i}"></div>
+          <span class="nameMember" id="nameMemberMain${i}"></span>
+      </div>
+      <input class="customCheckbox" id="checkboxMember${i}" type="checkbox" onclick="checkCheckbox(${i})" onchange="updateStatus(${i})">
+  </div>
+  `;
+    fillContactsOnBoard(i);
+  }
+  assignRandomBackgroundColor();
+  addCheckboxStatus();
+}
 /**
  * Adds checkbox status.
  */
@@ -666,14 +668,16 @@ function deleteSubtask(i) {
   var elementToRemove = document.getElementById(`valueSubtaskContainer${i}`);
   elementToRemove.remove();
   addSubtasks.splice(i, 1);
-  for (let i = 0; i < addSubtasks.length; i++) {
+  let clear = document.getElementById('subtaskListMain');
+  clear.innerHTML = ''; 
+  for (let j = 0; j < addSubtasks.length; j++) {
     document.getElementById("subtaskListMain").innerHTML += `
-  <div id="valueSubtaskContainer${i}" class="valueSubtaskContainer">
-    <li>${addSubtasks[i]}</li>
+  <div id="valueSubtaskContainer${j}" class="valueSubtaskContainer">
+    <li>${addSubtasks[j]}</li>
     <div class="editDeleteSubtaskIconContainer">
-      <img src="assets/img/edit.svg" alt="edit icon" id="editSubtaskIcon" onclick="editSubtask(${i})">
+      <img src="assets/img/edit.svg" alt="edit icon" id="editSubtaskIcon" onclick="editSubtask(${j})">
       <div class="seperaterSubtasks"></div>
-      <img src="assets/img/delete.svg" alt"delete icon" id="deleteSubtaskIcon" onclick="deleteSubtask(${i})">
+      <img src="assets/img/delete.svg" alt"delete icon" id="deleteSubtaskIcon" onclick="deleteSubtask(${j})">
     </div>
   </div>  
     `;

@@ -556,6 +556,8 @@ function addSubtaskToListAndDisplay() {
   let valueSubtask = document.getElementById("subTaskInput").value;
   addSubtasks.push(valueSubtask);
   valueSubtask.innerHTML = "";
+  let clearSubtask = document.getElementById('subtaskList');
+  clearSubtask.innerHTML = '';
   for (let i = 0; i < addSubtasks.length; i++) {
     document.getElementById("subtaskList").innerHTML += `
   <div id="valueSubtaskContainer${i}" class="valueSubtaskContainer" ondblclick="editSubtask(${i})">
@@ -605,7 +607,7 @@ function addContactToBoardAndFill() {
             <div class="styleMembersAddTask" id="profilMember${i}"></div>
             <span class="nameMember" id="nameMember${i}"></span>
         </div>
-        <input class="customCheckbox" id="checkboxMember${i}" type="checkbox" onclick="checkCheckbox(i)" onchange="updateStatus(${i})">
+        <input class="customCheckbox" id="checkboxMember${i}" type="checkbox" onclick="checkCheckbox(${i})" onchange="updateStatus(${i})">
     </div>
     `;
       fillContactsOnBoard(i);
@@ -751,8 +753,10 @@ function progress(i) {
       (item) => item === true
     ).length;
     let goal = mainUserInfos[0].tasks[i].subtasks.length;
-    document.getElementById(`progress${i}`).style.width =
-      (progress / goal) * 100 + "%";
+    let progressElement = document.getElementById(`progress${i}`);
+    if (progressElement) {
+      progressElement.style.width = (progress / goal) * 100 + "%";
+    } 
   }
 }
 
