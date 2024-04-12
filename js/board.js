@@ -39,6 +39,7 @@ async function onload() {
   setTodayDate();
   currentBox = "toDoTasks";
   boardFocused();
+  handlePriorityClick('medium');
 }
 
 /**

@@ -223,10 +223,12 @@ function editTask(i) {
   container.innerHTML = getTaskFormHTML(i);
   addValueEdit(i);
   addStatusToMembersEdit(i);
+  handlePriorityClick('medium');
 }
 document.addEventListener("DOMContentLoaded", function () {
   // Hier kommt dein Code hin, der sicher ausgeführt wird, wenn das DOM vollständig geladen ist
   addValueEdit(0); // Beispielaufruf für deine Funktion mit einem Beispielindex
+
 });
 
 /**

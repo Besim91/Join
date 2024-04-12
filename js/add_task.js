@@ -21,6 +21,7 @@ async function onload() {
   setTodayDate();
   addStatusToMembers();
   addTaskFocused();
+  handlePriorityClick('medium')
 }
 
 function addTaskFocused() {
