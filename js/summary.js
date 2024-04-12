@@ -6,10 +6,12 @@
 async function loading() {
   await init();
   await includeHTML();
-  displayGreeting();
   displayUserName();
   displayUserProfile();
-  updateSummaryCountValues();
+  if (!window.location.href.includes("help.html")) {
+    displayGreeting();
+    updateSummaryCountValues();
+  }
   summaryFocused();
 }
 
