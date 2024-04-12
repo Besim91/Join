@@ -131,7 +131,7 @@ function addMembersValueFunction(i) {
         .map((word) => word.charAt(0))
         .join("");
       document.getElementById(`profilsOnBoard${i}`).innerHTML += `
-          <div class="profileOnBoard" id="selectedProfilOnBoard${i}">${memberFirstLetter}</div>
+          <div class="profileOnBoard" id="selectedProfilOnBoard${j}">${memberFirstLetter}</div>
       `;
     }
   }
@@ -330,7 +330,7 @@ function assignRandomBackgroundColor() {
   elementsWithProfilMember.forEach((element) => {
     // Überprüfen, ob das Element bereits eine Farbe zugewiesen hat
     if (!elementColors[element.id]) {
-      let randomColor = generateDarkColor();
+      let randomColor = generateUniqueRandomColor();
       element.style.backgroundColor = randomColor;
       // Farbe dem Element im Objekt zuweisen
       elementColors[element.id] = randomColor;
@@ -343,7 +343,7 @@ function assignRandomBackgroundColor() {
   elementsWithSelectedProfilOnBoard.forEach((element) => {
     // Überprüfen, ob das Element bereits eine Farbe zugewiesen hat
     if (!elementColors[element.id]) {
-      let randomColor = generateDarkColor();
+      let randomColor = generateUniqueRandomColor();
       element.style.backgroundColor = randomColor;
       // Farbe dem Element im Objekt zuweisen
       elementColors[element.id] = randomColor;
@@ -354,7 +354,13 @@ function assignRandomBackgroundColor() {
   });
 }
 
-
+function generateUniqueRandomColor() {
+  let randomColor;
+  do {
+    randomColor = generateDarkColor();
+  } while (Object.values(elementColors).includes(randomColor)); // Überprüfen, ob die Farbe bereits verwendet wird
+  return randomColor;
+}
 
 /**
  * Generates a random dark color.
