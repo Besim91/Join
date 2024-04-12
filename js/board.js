@@ -527,9 +527,10 @@ function addSubtaskToListAndDisplay() {
   let clearSubtask = document.getElementById("subtaskList");
   clearSubtask.innerHTML = "";
   for (let i = 0; i < addSubtasks.length; i++) {
+    let iterateSubtasks = addSubtasks[i];
     document.getElementById("subtaskList").innerHTML += `
   <div id="valueSubtaskContainer${i}" class="valueSubtaskContainer" ondblclick="editSubtask(${i})">
-    <li>${valueSubtask}</li>
+    <li>${iterateSubtasks}</li>
     <div class="editDeleteSubtaskIconContainer">
       <img src="assets/img/edit.svg" alt="edit icon" id="editSubtaskIcon" onclick="editSubtask(${i})">
       <div class="seperaterSubtasks"></div>

@@ -118,6 +118,9 @@ function handleTaskForm(event) {
   continueTaskFormHandling();
 }
 
+
+
+
 /**
  * Handles the remaining task form handling process after all validations are passed.
  *
@@ -135,7 +138,20 @@ function continueTaskFormHandling() {
     togglePriority(activePriority);
     clearAddTaskFloating();
     showAlert();
+    redirectToBoardPage();
   }
+}
+
+/**
+ * Redirects the user to the "board.html" page after a delay of three seconds.
+ * @function
+ * @name redirectToBoardPage
+ * @returns {void}
+ */
+function redirectToBoardPage() {
+  setTimeout(function() {
+      window.location.href = 'board.html';
+  }, 1500); 
 }
 
 /**
