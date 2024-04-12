@@ -72,15 +72,13 @@
   padding-left: 8px;
 }
 
-
-  .categorysBoard {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    color: rgb(66, 82, 110);
-    min-width: 244px;
-  }
-
+.categorysBoard {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: rgb(66, 82, 110);
+  min-width: 244px;
+}
 
 .inputSearchContainer::placeholder {
   font-family: "Open Sans", sans-serif;
@@ -1074,6 +1072,8 @@
   justify-content: center;
   padding-left: 17px;
   margin-bottom: 24px;
+  height: 100px;
+  overflow-y: scroll;
 }
 
 .checkBoxContainer label {
@@ -1408,7 +1408,10 @@ th {
   border-bottom: 1px solid rgba(0, 93, 255, 1);
 }
 
-.inputEditSubtask:hover .editDeleteSubtaskIconContainerInProcess .inputEditSubtask:hover img {
+.inputEditSubtask:hover
+  .editDeleteSubtaskIconContainerInProcess
+  .inputEditSubtask:hover
+  img {
   display: flex;
 }
 
@@ -1427,7 +1430,10 @@ th {
   border-bottom: 1px solid rgba(0, 93, 255, 1);
 }
 
-.inputEditSubtaskInProcess:hover .editDeleteSubtaskIconContainerInProcess .inputEditSubtaskInProcess:hover img {
+.inputEditSubtaskInProcess:hover
+  .editDeleteSubtaskIconContainerInProcess
+  .inputEditSubtaskInProcess:hover
+  img {
   display: flex;
 }
 
@@ -1487,10 +1493,9 @@ th {
     width: 100%;
   }
 
-
   .styleTasks {
     overflow-x: scroll;
-    overflow-y:none;
+    overflow-y: none;
   }
   #boardsContainer {
     width: 100%;
