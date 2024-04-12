@@ -14,6 +14,7 @@ async function onload() {
     currentBox = "toDoTasks";
     boardFocused();
     handlePriorityClick('medium');
+    assignRandomBackgroundColor();
   }
 
   /**

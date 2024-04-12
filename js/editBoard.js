@@ -56,7 +56,6 @@ function renderContactList(contactContainer) {
     `;
     fillContactsOnBoard(i);
   }
-  assignRandomBackgroundColor();
   addCheckboxStatusEdit();
 }
 
