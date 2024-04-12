@@ -383,3 +383,17 @@ label {
     width: unset;
   }
 }
+
+@media only screen and (max-width: 400px) {
+  .container {
+    width: 96% !important;
+  }
+
+  .section {
+    width: 90%;
+  }
+
+  .signeupText {
+    font-size: 32px !important;
+  }
+}
