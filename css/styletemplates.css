@@ -620,6 +620,7 @@ h2 {
     visibility: visible;
     padding-left: 16px;
     padding-right: 16px;
+    padding-top: 32px;
   }
 
   .sum-container {
