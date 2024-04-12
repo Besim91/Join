@@ -25,33 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /**
- * Asynchronous function called when the document is fully loaded.
- * Initializes the application, includes HTML files, displays user profile,
- * renders content, sets today's date, and sets the current box to 'toDoTasks'.
- *
- * @returns {Promise<void>} A promise that resolves when all tasks are completed.
- */
-async function onload() {
-  await init();
-  await includeHTML();
-  displayUserProfile();
-  render();
-  setTodayDate();
-  currentBox = "toDoTasks";
-  boardFocused();
-  handlePriorityClick('medium');
-}
-
-/**
- * Adds the 'sideMenuInFocus' class to the board side menu element.
- *
- * @returns {void}
- */
-function boardFocused() {
-  document.getElementById("boardSidemenu").classList.add("sideMenuInFocus");
-}
-
-/**
  * Renders various elements on the page, including the add task floating mask,
  * contacts on the task flotaing mask, and updates the HTML content.
  *
@@ -61,51 +34,6 @@ function render() {
   renderAddTaskFloating();
   renderContactsOnBoard();
   updateHTML();
-}
-
-/**
- * Toggles the visibility of a card by adding or removing a CSS class.
- * Additionally, it adds standard status to members and controls the display of the contact board.
- *
- * @returns {void}
- */
-function toggleCard() {
-  addStatusToMembers();
-  let card = document.getElementById("addTaskFloating");
-  if (card) {
-    card.classList.toggle("activeAddTask");
-  }
-  let contactBoard = document.getElementById("listContactContainerBoard");
-  if (contactBoard.classList.contains("dFlex")) {
-    contactBoard.classList.remove("dFlex");
-    contactBoard.classList.add("dNone");
-  }
-}
-
-/**
- * Toggles the visibility of the card back to its original state if it's currently active.
- * Removes the "activeAddTask" class from the card, reverting it to its inactive state.
- *
- * @function toggleCardBack
- * @returns {void}
- */
-function toggleCardBack() {
-  addStatusToMembers();
-  let card = document.getElementById("addTaskFloating");
-  if (card && card.classList.contains("activeAddTask")) {
-    card.classList.toggle("activeAddTask");
-  }
-}
-
-/**
- * Toggles the visibility of a card on the board by adding or removing a CSS class.
- *
- * @param {number} i - The index of the card to toggle.
- * @returns {void}
- */
-function toggleCardFromBoard() {
-  let card = document.getElementById(`tasksOverBoardContainer${i}`);
-  card.classList.toggle("active");
 }
 
 /**
@@ -323,24 +251,6 @@ function addPriorityValue(priority) {
 }
 
 /**
- *
- * Displays icons for different priorities based on the provided priority value.
- * @param {string} priority - The priority value for which icons should be displayed.
- * @returns {void}
- */
-function showIconsPrio(priority) {
-  ["low", "medium", "urgent"].forEach((prio) => {
-    if (prio === priority) {
-      document.getElementById(`${prio}IconGray`).classList.remove("dNone");
-      document.getElementById(`${prio}IconColor`).classList.add("dNone");
-    } else {
-      document.getElementById(`${prio}IconGray`).classList.add("dNone");
-      document.getElementById(`${prio}IconColor`).classList.remove("dNone");
-    }
-  });
-}
-
-/**
  * Shows icons for different priorities based on the provided priority value.
  *
  * @param {string} priority - The priority value for which icons should be displayed.
@@ -359,82 +269,6 @@ function showIconsPrio(priority) {
 }
 
 /**
- * Adds a click event listener to each element with the class 'priorityBox div'.
- * When clicked, it resets background colors, toggles the background color of the clicked element,
- * retrieves the priority value, and calls the 'addPriorityValue' function.
- *
- * @returns {void}
- */
-document.querySelectorAll(".priorityBox div").forEach((button) => {
-  button.addEventListener("click", function () {
-    resetBackgroundColors();
-    toggleBackgroundColor(this, prio);
-    const priority = this.textContent.trim().toLowerCase();
-    addPriorityValue(priority);
-  });
-});
-
-/**
- * Toggles the active state of a priority button.
- *
- * @param {number} priority - The priority value to toggle.
- * @returns {void}
- */
-function togglePriority(priority) {
-  if (activePriority === priority) {
-    activePriority = null;
-  } else {
-    if (activePriority !== null) {
-      document
-        .getElementsByTagName("button")
-        [activePriority - 1].classList.remove("active");
-    }
-    activePriority = priority;
-  }
-}
-
-/**
- * Toggles the visibility of the category dropdown menu and updates the dropdown arrow icon accordingly.
- *
- * @returns {void}
- */
-function toggleCategory() {
-  var listTechnical = document.getElementById("listTechnical");
-
-  var categoryDropdown = document.getElementById("categoryDropdown");
-  if (
-    listTechnical.style.display === "none" ||
-    listTechnical.style.display === ""
-  ) {
-    listTechnical.style.display = "block";
-    categoryDropdown.src = "assets/img/arrow_drop_up.png";
-  } else {
-    listTechnical.style.display = "none";
-    categoryDropdown.src = "assets/img/arrow_drop_down.png";
-  }
-}
-
-/**
- * Toggles the visibility of the technical category list and updates the dropdown icon.
- *
- * @returns {void}
- */
-function toggleCategoryEdit() {
-  var listTechnicalEdit = document.getElementById("listTechnicalEdit");
-  var categoryDropdown = document.getElementById("categoryDropdown");
-  if (
-    listTechnicalEdit.style.display === "none" ||
-    listTechnicalEdit.style.display === ""
-  ) {
-    listTechnicalEdit.style.display = "block";
-    categoryDropdown.src = "assets/img/arrow_drop_up.png";
-  } else {
-    listTechnicalEdit.style.display = "none";
-    categoryDropdown.src = "assets/img/arrow_drop_down.png";
-  }
-}
-
-/**
  * Resets the background colors of all priority buttons.
  *
  * @returns {void}
@@ -446,100 +280,6 @@ function resetBackgroundColors() {
     button.classList.remove("activePrioMedium");
     button.classList.remove("activePrioUrgent");
   });
-}
-
-/**
- * Toggles the background color of buttons based on the priority type.
- * If the button has the specified priority type, it adds an active class for that priority type.
- * Otherwise, it removes active classes for all priority types.
- *
- * @param {string} priorityType - The priority type ('low', 'medium', or 'urgent').
- * @returns {void}
- */
-function toggleBackgroundColor(priorityType) {
-  const buttons = document.querySelectorAll(".priorityBox > div");
-  buttons.forEach((button) => {
-    if (button.classList.contains(priorityType)) {
-      button.classList.add(
-        "activePrio" +
-          priorityType.charAt(0).toUpperCase() +
-          priorityType.slice(1)
-      );
-    } else {
-      button.classList.remove("activePrioLow");
-      button.classList.remove("activePrioMedium");
-      button.classList.remove("activePrioUrgent");
-    }
-  });
-}
-
-/**
- * Populates the technical category dropdown menu with options based on available categories.
- *
- * @returns {void}
- */
-function technicalUser() {
-  let technical = document.getElementById("listTechnical");
-  technical.innerHTML = "";
-  for (let k = 0; k < categorySet.length; k++) {
-    technical.innerHTML += `<div class="select" onclick="chosenTechnicalUser('${categorySet[k]}')">${categorySet[k]}</div>`;
-  }
-}
-
-/**
- * Sets the value of the category input field to the specified category.
- *
- * @param {string} category - The selected category.
- * @returns {void}
- */
-function chosenTechnicalUser(category) {
-  document.getElementById("categoryInput").value = `${category}`;
-}
-
-/**
- * Retrieves the value of the subtask input field. If the input value is not empty,
- * adds the subtask to the list and updates the display. Otherwise, displays an alert message.
- *
- * @returns {void}
- */
-function valueSubtask() {
-  var input = document.getElementById("subTaskInput").value;
-  if (input.length > 0) {
-    addSubtaskToListAndDisplay();
-  } else {
-    var alertMessageTitle = "Please enter a Letter";
-    document.getElementById("alertSubtaskBoard").innerHTML = alertMessageTitle;
-    setTimeout(function () {
-      document.getElementById("alertSubtaskBoard").innerHTML = "";
-    }, 3000); // Verzögerung von 3 Sekunden (3000 Millisekunden)
-  }
-}
-
-/**
- * Adds the value of the subtask input field to the list of subtasks and updates the HTML content
- * to display the added subtask along with edit and delete icons.
- *
- * @returns {void}
- */
-function addSubtaskToListAndDisplay() {
-  let valueSubtask = document.getElementById("subTaskInput").value;
-  addSubtasks.push(valueSubtask);
-  valueSubtask.innerHTML = "";
-  let clearSubtask = document.getElementById("subtaskList");
-  clearSubtask.innerHTML = "";
-  for (let i = 0; i < addSubtasks.length; i++) {
-    let iterateSubtasks = addSubtasks[i];
-    document.getElementById("subtaskList").innerHTML += `
-  <div id="valueSubtaskContainer${i}" class="valueSubtaskContainer" ondblclick="editSubtask(${i})">
-    <li>${iterateSubtasks}</li>
-    <div class="editDeleteSubtaskIconContainer">
-      <img src="assets/img/edit.svg" alt="edit icon" id="editSubtaskIcon" onclick="editSubtask(${i})">
-      <div class="seperaterSubtasks"></div>
-      <img src="assets/img/delete.svg" alt"delete icon" id="deleteSubtaskIcon" onclick="deleteSubtask(${i})">
-    </div>
-  </div>
-  `;
-  }
 }
 
 /**
@@ -558,58 +298,6 @@ function renderContactsOnBoard() {
     contactBoard.classList.remove("dFlex");
   }
   addContactToBoardAndFill();
-}
-
-/**
- * Adds contacts to the board and fills them with data from the user's contact book.
- *
- * @returns {void}
- */
-function addContactToBoardAndFill() {
-  if (mainUserInfos[0]["contactBook"]) {
-    let contactBoard = document.getElementById("listContactContainerBoard");
-    for (let i = 0; i < mainUserInfos[0]["contactBook"].length; i++) {
-      contactBoard.innerHTML += `
-    <div class="contactsBoardContainer">
-        <div class="contactsBoardContainerChild">   
-            <div class="styleMembersAddTask" id="profilMember${i}"></div>
-            <span class="nameMember" id="nameMember${i}"></span>
-        </div>
-        <input class="customCheckbox" id="checkboxMember${i}" type="checkbox" onchange="updateStatus(${i})">
-    </div>
-    `;
-      fillContactsOnBoard(i);
-    }
-    assignRandomBackgroundColor();
-    addCheckboxStatus();
-  }
-}
-
-/**
- * Adds checkbox status to each contact based on the status array.
- *
- * @returns {void}
- */
-function addCheckboxStatus() {
-  for (let i = 0; i < mainUserInfos[0]["contactBook"].length; i++) {
-    let checkbox = document.getElementById(`checkboxMember${i}`);
-    checkbox.checked = statusMembers[i];
-  }
-}
-
-/**
- * Updates the status of a contact based on the checkbox state.
- *
- * @param {number} i - The index of the contact to update.
- * @returns {void}
- */
-function updateStatus(i) {
-  let checkbox = document.getElementById(`checkboxMember${i}`);
-  if (checkbox.checked) {
-    statusMembers[i] = true;
-  } else {
-    statusMembers[i] = false;
-  }
 }
 
 /**
@@ -656,45 +344,9 @@ function assignRandomBackgroundColor() {
  * @returns {string} A random dark color in HSL format.
  */
 function generateDarkColor() {
-  // Generieren Sie eine zufällige Farbe mit geringem Helligkeitswert
   return `hsl(${Math.random() * 360}, 100%, ${Math.random() * 30 + 20}%)`;
 }
 
-/**
- * Fills contact information on the board for the specified index.
- *
- * @param {number} i - The index of the contact to fill information for.
- * @returns {void}
- */
-function fillContactsOnBoard(i) {
-  const fullName = mainUserInfos[0]["contactBook"][i]["name"];
-  const initials = fullName
-    .split(" ")
-    .map((word) => word.slice(0, 1).toUpperCase())
-    .join("");
-  document.getElementById(`profilMember${i}`).innerHTML = initials;
-  document.getElementById(`nameMember${i}`).innerHTML = fullName;
-}
-
-/**
- * Fills contact information on the task board for the specified task index.
- *
- * @param {number} i - The index of the task to fill contact information for.
- * @returns {void}
- */
-function fillContactsOverBoard(i) {
-  for (let j = 0; j < mainUserInfos[0]["tasks"][i]["members"].length; j++) {
-    const fullName = mainUserInfos[0]["tasks"][i]["members"][j];
-    const initials = fullName
-      .split(" ")
-      .slice(0, 2)
-      .map((word) => word.charAt(0))
-      .join("");
-    document.getElementById(`profilMemberOverBoardInitials${j}`).innerHTML =
-      initials;
-    document.getElementById(`memberOverBoard${j}`).innerHTML = fullName;
-  }
-}
 
 /**
  * Updates the progress bar for the specified task index based on completed subtasks.
@@ -719,105 +371,3 @@ function progress(i) {
   }
 }
 
-/**
- * Clear the addMembersValueArray.
- *
- * @returns {void}
- */
-function ClearAddMembersValueArray() {
-  addMembersValueArray = [];
-}
-
-/**
- * Display an alert message when the title field is not filled.
- *
- * This function sets an alert message in the designated HTML element to remind the user to select a title.
- * The alert message disappears after a delay of 3 seconds.
- *
- * @returns {void}
- */
-function alertTitel() {
-  var alertMessageTitle = "Please select a Titel";
-  document.getElementById("alertTitleBoard").innerHTML = alertMessageTitle;
-  setTimeout(function () {
-    document.getElementById("alertTitleBoard").innerHTML = "";
-  }, 3000);
-}
-
-/**
- * Display an alert message when the due date field is not filled.
- *
- * This function sets an alert message in the designated HTML element to remind the user to select a due date.
- * The alert message disappears after a delay of 3 seconds.
- *
- * @returns {void}
- */
-function alertDate() {
-  var alertMessageDate = "Please select a Due Date";
-  document.getElementById("alertDateBoard").innerHTML = alertMessageDate;
-  setTimeout(function () {
-    document.getElementById("alertDateBoard").innerHTML = "";
-  }, 3000);
-}
-
-/**
- * Display an alert message when the priority is not selected.
- *
- * This function sets an alert message in the designated HTML element to remind the user to select a priority.
- * The alert message disappears after a delay of 3 seconds.
- *
- * @returns {void}
- */
-function alertPrio() {
-  var alertMessagePriority = "Please select a priority!";
-  document.getElementById("alertPrioBoard").innerHTML = alertMessagePriority;
-  setTimeout(function () {
-    document.getElementById("alertPrioBoard").innerHTML = "";
-  }, 3000);
-}
-
-/**
- * Display an alert message when the category is not selected.
- *
- * This function sets an alert message in the designated HTML element to remind the user to select a category.
- * The alert message disappears after a delay of 3 seconds.
- *
- * @returns {void}
- */
-function alertCategory() {
-  var alertMessageCategory = "Please select a category!";
-  document.getElementById("alertCategoryBoard").innerHTML =
-    alertMessageCategory;
-  setTimeout(function () {
-    document.getElementById("alertCategoryBoard").innerHTML = "";
-  }, 3000);
-}
-
-/**
- * Set the selected category input value and update the selected category.
- *
- * This function sets the value of the category input field to the provided category.
- * It also updates the global variable `selectedCategoryInput` with the selected category.
- *
- * @param {string} category - The selected category.
- * @returns {void}
- */
-function chosenTechnicalUser(category) {
-  document.getElementById("categoryInput").value = `${category}`;
-  selectedCategoryInput = category;
-}
-
-/**
- * Set the title value for a searched task on the board.
- *
- * This function sets the title value of the task found in the search results to the corresponding board element.
- *
- * @param {Array} foundTasks - The array of tasks found in the search results.
- * @param {number} i - The index of the task in the foundTasks array.
- * @returns {void}
- */
-function addTitleValueSearched(foundTasks, i) {
-  document.getElementById(`titleOnBoard${i}`).innerHTML = ``;
-  let addTitleValue = foundTasks[i]["title"];
-  document.getElementById(`titleOnBoard${i}`).innerHTML = `${addTitleValue}`;
-}
