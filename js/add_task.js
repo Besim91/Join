@@ -613,13 +613,18 @@ function toggleCategory() {
 }
 
 /**
- * Sets the chosen technical category as the input value.
+ * Sets the chosen technical category as the input value and closes the dropdown menu.
  * @param {string} category - The selected category.
  */
-
 function chosenTechnicalUserMain(category) {
-  document.getElementById("categoryInput").value = `${category}`;
+  document.getElementById("categoryInput").value = category;
   selectedCategoryInput = category;
+  
+  // Schließe das Dropdown-Menü für technische Kategorien
+  var listTechnical = document.getElementById("listTechnicalMain");
+  listTechnical.style.display = "none";
+  var categoryDropdown = document.getElementById("categoryDropdownMain");
+  categoryDropdown.src = "assets/img/arrow_drop_down.png";
 }
 
 /**
