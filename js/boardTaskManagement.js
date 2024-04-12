@@ -143,6 +143,7 @@ function noAlertStartHandleTaskForm() {
     fillArray();
     togglePriority(activePriority);
     clearAddTaskFloating();
+    toggleCard();
     showAlert();
 }
 

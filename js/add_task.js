@@ -134,12 +134,12 @@ function continueTaskFormHandling() {
   ) {
     var alertMessage = document.getElementById("alertCategory");
     alertMessage.innerHTML = "Please select a valid category!";
+    return;
   } else {
     fillArray();
     togglePriority(activePriority);
     clearAddTaskFloating();
     showAlert();
-    redirectToBoardPage();
   }
 }
 
@@ -372,18 +372,12 @@ function fillContactsOnBoard(i) {
 
 function assignRandomBackgroundColor() {
   const elementsWithProfilMember = document.querySelectorAll('[id^="profilMember"]');
-  
   elementsWithProfilMember.forEach((element) => {
-    // Überprüfen, ob für dieses Mitglied bereits eine Hintergrundfarbe zugewiesen wurde
     if (!memberBackgroundColors[element.id]) {
-      // Generiere eine zufällige Hintergrundfarbe
       const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-      // Weise die Hintergrundfarbe dem Element zu
       element.style.backgroundColor = randomColor;
-      // Speichere die zugewiesene Hintergrundfarbe im Objekt memberBackgroundColors
       memberBackgroundColors[element.id] = randomColor;
     } else {
-      // Wenn bereits eine Hintergrundfarbe zugewiesen wurde, verwenden Sie diese
       element.style.backgroundColor = memberBackgroundColors[element.id];
     }
   });
@@ -658,6 +652,7 @@ function showAlert() {
       customAlert.style.animation = ""; // Setzt die Animation zurück
     }, 1000); // Wait for 1 second before hiding the alert
   }, 3000); // Wait for 3 seconds before starting the animation
+  redirectToBoardPage();
 }
 
 /**

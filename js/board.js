@@ -10,6 +10,7 @@ let categorySet = ["Technical Task", "User Story"];
 var activePriority = null;
 let selectedCategoryInput;
 let currentBox;
+let elementColors = {};
 
 /**
  * Adds an event listener to the document that triggers when the DOM content is fully loaded.
@@ -91,6 +92,7 @@ function updateHTML() {
     progress(i);
     transformPriorityToImg(i);
   }
+  assignRandomBackgroundColor();
 }
 
 /**
@@ -133,7 +135,7 @@ function addMembersValueFunction(i) {
       `;
     }
   }
-  assignRandomBackgroundColor();
+
 }
 
 /**
@@ -322,21 +324,37 @@ function addStatusToMembers() {
  * @returns {void}
  */
 function assignRandomBackgroundColor() {
-  const elementsWithProfilMember = document.querySelectorAll(
-    '[id^="profilMember"]'
-  );
-  const elementsWithSelectedProfilOnBoard = document.querySelectorAll(
-    '[id*="selectedProfilOnBoard"]'
-  );
+  const elementsWithProfilMember = document.querySelectorAll('[id^="profilMember"]');
+  const elementsWithSelectedProfilOnBoard = document.querySelectorAll('[id*="selectedProfilOnBoard"]');
+  
   elementsWithProfilMember.forEach((element) => {
-    let randomColor = generateDarkColor();
-    element.style.backgroundColor = randomColor;
+    // Überprüfen, ob das Element bereits eine Farbe zugewiesen hat
+    if (!elementColors[element.id]) {
+      let randomColor = generateDarkColor();
+      element.style.backgroundColor = randomColor;
+      // Farbe dem Element im Objekt zuweisen
+      elementColors[element.id] = randomColor;
+    } else {
+      // Wenn das Element bereits eine Farbe hat, diese Farbe verwenden
+      element.style.backgroundColor = elementColors[element.id];
+    }
   });
+  
   elementsWithSelectedProfilOnBoard.forEach((element) => {
-    let randomColor = generateDarkColor();
-    element.style.backgroundColor = randomColor;
+    // Überprüfen, ob das Element bereits eine Farbe zugewiesen hat
+    if (!elementColors[element.id]) {
+      let randomColor = generateDarkColor();
+      element.style.backgroundColor = randomColor;
+      // Farbe dem Element im Objekt zuweisen
+      elementColors[element.id] = randomColor;
+    } else {
+      // Wenn das Element bereits eine Farbe hat, diese Farbe verwenden
+      element.style.backgroundColor = elementColors[element.id];
+    }
   });
 }
+
+
 
 /**
  * Generates a random dark color.

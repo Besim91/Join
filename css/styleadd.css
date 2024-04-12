@@ -2,6 +2,7 @@
   from {
     left: calc(50% - 150px);
   }
+
   to {
     left: -300px;
   }
@@ -469,6 +470,7 @@ img {
 .contactsBoardContainer {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 4px;
 }
 
 .contactsBoardContainer:hover {
@@ -495,7 +497,8 @@ img {
   z-index: 100000;
   background-color: white;
   width: 100%;
-  height: 100%;
+  height: 150px;
+  overflow-y: scroll;
   margin-bottom: 16px;
 }
 
@@ -769,6 +772,8 @@ input[type="date"]::-webkit-input-placeholder {
   position: relative;
   cursor: pointer;
   flex-direction: column;
+  overflow-y: scroll;
+  max-height: 60px;
 }
 
 .editDeleteSubtaskIconContainer {
@@ -848,10 +853,7 @@ input[type="date"]::-webkit-input-placeholder {
   border-bottom: 1px solid rgba(0, 93, 255, 1);
 }
 
-.inputEditSubtask:hover
-  .editDeleteSubtaskIconContainerInProcess
-  .inputEditSubtask:hover
-  img {
+.inputEditSubtask:hover .editDeleteSubtaskIconContainerInProcess .inputEditSubtask:hover img {
   display: flex;
 }
 
@@ -870,10 +872,7 @@ input[type="date"]::-webkit-input-placeholder {
   border-bottom: 1px solid rgba(0, 93, 255, 1);
 }
 
-.inputEditSubtaskInProcess:hover
-  .editDeleteSubtaskIconContainerInProcess
-  .inputEditSubtaskInProcess:hover
-  img {
+.inputEditSubtaskInProcess:hover .editDeleteSubtaskIconContainerInProcess .inputEditSubtaskInProcess:hover img {
   display: flex;
 }
 
@@ -934,9 +933,11 @@ input[type="date"]::-webkit-input-placeholder {
   .priorityBox div {
     width: 25%;
   }
+
   .clearresp {
     display: none;
   }
+
   .buttonBoxResp {
     padding: 0;
     margin: 0;
@@ -945,6 +946,7 @@ input[type="date"]::-webkit-input-placeholder {
     justify-content: center;
     align-items: center;
   }
+
   .buttonBoxResp div {
     margin: 0;
     padding: 0;
@@ -971,13 +973,14 @@ input[type="date"]::-webkit-input-placeholder {
   .priorityBox img {
     width: 14px;
   }
+
   .priorityBox div {
     flex-direction: column;
   }
 }
 
-@media only screen and (max-width: 320px){
-  .clearButtonResp{
+@media only screen and (max-width: 320px) {
+  .clearButtonResp {
     display: none;
   }
 }
