@@ -817,27 +817,6 @@ function addPriorityValue(priority) {
 }
 
 
-/**
- * A function that executes after clicking the "CreateTask" button.
- * It displays a confirmation message and then redirects to the "board.html" page after 5 seconds.
- */
-function redirectToBoardPage() {
-  // Displaying the confirmation message
-  var addedTask = document.getElementById("addedTask");
-  addedTask.style.display = "block";
-
-  // Delaying the redirection by 5 seconds
-  setTimeout(function() {
-    // Hiding the confirmation message
-    addedTask.style.display = "none";
-    // Redirecting to the "board.html" page
-    window.location.href = "board.html"; // Check if this is the correct URL
-  }, 5000);
-}
-
-
-
-
 
 
 
