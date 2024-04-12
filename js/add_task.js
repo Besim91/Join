@@ -10,20 +10,9 @@ let addMembers = [];
 let memberBackgroundColors = {};
 
 /**
- * Initializes the page.
- * @returns {Promise<void>} A Promise object.
+ * Fügt dem Element mit der ID "addTaskSidemenu" die CSS-Klasse "sideMenuInFocus" hinzu,
+ * um es hervorzuheben.
  */
-
-async function onload() {
-  await init();
-  await includeHTML();
-  displayUserProfile();
-  setTodayDate();
-  addStatusToMembers();
-  addTaskFocused();
-  handlePriorityClick('medium')
-}
-
 function addTaskFocused() {
   document.getElementById("addTaskSidemenu").classList.add("sideMenuInFocus");
 }
@@ -38,47 +27,11 @@ function setTodayDate() {
 }
 
 /**
- * Validates the selected date in the input field 'dueDateMainAddTask'.
- * If the selected date is in the past, it displays an alert and clears the input field.
- * This function is triggered when the input field loses focus.
- *
- * @returns {void}
- */
-function validateSelectedDate() {
-  var inputDate = document.getElementById("dueDateMainAddTask").value;
-  if (inputDate.length === 10) {
-    var selectedDate = new Date(inputDate);
-    var today = new Date();
-    today.setHours(0, 0, 0, 0);
-    if (selectedDate < today) {
-      dateAlert();
-      document.getElementById("dueDateMainAddTask").value = "";
-    }
-  }
-}
-
-/**
- * Displays an alert message "Please pick a future date!" for three seconds in the 'alertDate' element.
- *
- * @returns {void}
- */
-function dateAlert() {
-  var alertDate = document.getElementById("alertDate");
-  if (alertDate) {
-    alertDate.innerText = "Please pick a future date!";
-    setTimeout(function () {
-      alertDate.innerText = "";
-    }, 3000);
-  }
-}
-
-/**
  * Adds an event listener to the document that triggers when the DOM content is fully loaded.
  * Calls the 'setTodayDate' function to set the minimum date for the due date input field.
  * Additionally, adds an event listener to the 'dueDateMainAddTask' input field.
  * When the input field loses focus, it triggers the 'validateSelectedDate' function to ensure
  * that the selected date is today or in the future.
- *
  * @param {string} type - The event type to listen for ('DOMContentLoaded').
  * @param {function} listener - The callback function to execute when the event is triggered.
  * @returns {undefined}
@@ -89,179 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /**
- * Handles the form submission event for adding a task.
- * Displays alert messages if required fields are empty or if a valid category is not selected.
- *
- * @param {Event} event - The form submission event.
- * @returns {void}
- */
-function handleTaskForm(event) {
-  event.preventDefault();
-  if (titleMainAddTask.value === "") {
-    alertTitel();
-    return;
-  }
-  if (dueDateMainAddTask.value === "") {
-    alertDate();
-    return;
-  }
-  if (currentPriority === undefined) {
-    alertPrio();
-    return;
-  }
-  if (
-    selectedCategoryInput !== "User Story" &&
-    selectedCategoryInput !== "Technical Task"
-  ) {
-    alertCategory();
-    return;
-  }
-  continueTaskFormHandling();
-}
-
-
-
-
-/**
- * Handles the remaining task form handling process after all validations are passed.
- *
- * @returns {void}
- */
-function continueTaskFormHandling() {
-  if (
-    selectedCategoryInput !== "User Story" &&
-    selectedCategoryInput !== "Technical Task"
-  ) {
-    var alertMessage = document.getElementById("alertCategory");
-    alertMessage.innerHTML = "Please select a valid category!";
-    return;
-  } else {
-    fillArray();
-    togglePriority(activePriority);
-    clearAddTaskFloating();
-    showAlert();
-  }
-}
-
-/**
- * Redirects the user to the "board.html" page after a delay of three seconds.
- * @function
- * @name redirectToBoardPage
- * @returns {void}
- */
-function redirectToBoardPage() {
-  setTimeout(function() {
-      window.location.href = 'board.html';
-  }, 1500); 
-}
-
-/**
- * Displays an alert if no title is entered.
- */
-
-function alertTitel() {
-  // Define the alert message
-  var alertMessageTitle = "Please select a Titel!";
-  // Display the alert message in the HTML element with the ID 'alertTitle'
-  document.getElementById("alertTitle").innerHTML = alertMessageTitle;
-  // Clear the alert message after 3 seconds
-  setTimeout(function () {
-    document.getElementById("alertTitle").innerHTML = "";
-  }, 3000); // Delay of 3 seconds (3000 milliseconds)
-}
-
-/**
- * Displays an alert if no due date is selected.
- */
-
-function alertDate() {
-  // Define the alert message
-  var alertMessageDate = "Please select a Due Date!";
-  // Display the alert message in the HTML element with the ID 'alertDate'
-  document.getElementById("alertDate").innerHTML = alertMessageDate;
-  // Clear the alert message after 3 seconds
-  setTimeout(function () {
-    document.getElementById("alertDate").innerHTML = "";
-  }, 3000); // Delay of 3 seconds (3000 milliseconds)
-}
-
-/**
- * Displays an alert if no priority is selected.
- */
-
-function alertPrio() {
-  // Define the alert message
-  var alertMessagePriority = "Please select a priority!";
-  // Display the alert message in the HTML element with the ID 'alertPrio'
-  document.getElementById("alertPrio").innerHTML = alertMessagePriority;
-  // Clear the alert message after 3 seconds
-  setTimeout(function () {
-    document.getElementById("alertPrio").innerHTML = "";
-  }, 3000); // Delay of 3 seconds (3000 milliseconds)
-}
-
-/**
- * Displays an alert if no category is selected.
- */
-
-function alertCategory() {
-  // Define the alert message
-  var alertMessageCategory = "Please select a category!";
-  // Display the alert message in the HTML element with the ID 'alertCategory'
-  document.getElementById("alertCategory").innerHTML = alertMessageCategory;
-  // Clear the alert message after 3 seconds
-  setTimeout(function () {
-    document.getElementById("alertCategory").innerHTML = "";
-  }, 3000); // Delay of 3 seconds (3000 milliseconds)
-}
-
-/**
- * Fills the array with the entered task information.
- */
-
-function fillArray() {
-  let countIDs = countIds();
-  let addTitleValue = addTitleToBoard();
-  let addDescriptionValue = addDescriptionToBoard();
-  let addDueDateInput = addDueDateToBoard();
-  let addSubtaskStatus = addDoneToBoard();
-  let newToDo = {
-    id: `${countIDs}`,
-    box: "toDoTasks",
-    title: `${addTitleValue}`,
-    description: `${addDescriptionValue}`,
-    category: selectedCategoryInput,
-    dueDate: `${addDueDateInput}`,
-    members: addMembers,
-    status: statusMembers,
-    subtasks: addSubtasks,
-    done: addSubtaskStatus,
-    priority: currentPriority,
-  };
-  pushToDo(newToDo);
-  clearAddTaskFloating();
-  addStatusToMembers();
-}
-
-/**
- * Adds a new task to the tasks array.
- * @param {object} newToDo - The object of the new task.
- * @returns {Promise<void>} A Promise object.
- */
-
-async function pushToDo(newToDo) {
-  mainUserInfos[0]["tasks"].push(newToDo);
-  await setItem(`${currentUserMail}`, JSON.stringify(mainUserInfos));
-  addMembersValueArray = [];
-  addSubtasks = [];
-  addMembersValue = [];
-}
-
-/**
  * Shows the priority icons based on the selected priority.
  * @param {string} priority - The selected priority.
  */
-
 function showIconsPrio(priority) {
   ["low", "medium", "urgent"].forEach((prio) => {
     if (prio === priority) {
@@ -277,12 +60,9 @@ function showIconsPrio(priority) {
 /**
  * Renders contacts on the board.
  */
-
 function renderContactsOnBoard() {
-  // Clear the contact list container
   document.getElementById("listContactContainerMain").innerHTML = ``;
   let contactBoard = document.getElementById("listContactContainerMain");
-  // Toggle the display of the contact board
   if (contactBoard.classList.contains("dNone")) {
     contactBoard.classList.remove("dNone");
     contactBoard.classList.add("dFlex");
@@ -290,7 +70,6 @@ function renderContactsOnBoard() {
     contactBoard.classList.add("dNone");
     contactBoard.classList.remove("dFlex");
   }
-  // Render contacts if available
   if (mainUserInfos[0]["contactBook"]) {
     for (let i = 0; i < mainUserInfos[0]["contactBook"].length; i++) {
       contactBoard.innerHTML += `
@@ -335,7 +114,6 @@ function updateStatus(i) {
 /**
  * Adds status to members.
  */
-
 function addStatusToMembers() {
   addMembers = [];
   statusMembers = [];
@@ -351,7 +129,6 @@ function addStatusToMembers() {
  * Fills the contact list on the board.
  * @param {number} i - The index of the contact.
  */
-
 function fillContactsOnBoard(i) {
   // Extract the full name of the contact from mainUserInfos using the provided index i
   const fullName = mainUserInfos[0]["contactBook"][i]["name"];
@@ -368,8 +145,6 @@ function fillContactsOnBoard(i) {
 /**
  * Assigns random background colors to profile images.
  */
-
-
 function assignRandomBackgroundColor() {
   const elementsWithProfilMember = document.querySelectorAll('[id^="profilMember"]');
   elementsWithProfilMember.forEach((element) => {
@@ -386,7 +161,6 @@ function assignRandomBackgroundColor() {
 /**
  * Handles the value of the subtask input and updates the UI accordingly.
  */
-
 function valueSubtask() {
   var input = document.getElementById("subTaskInputMain").value;
   if (input.length > 0) {
@@ -428,7 +202,6 @@ function alertMessageTitel() {
  * Counts the unique ids for tasks.
  * @returns {number} The unique id.
  */
-
 function countIds() {
   if (mainUserInfos[0]["tasks"].length === 0) {
     return 0;
@@ -448,7 +221,6 @@ function countIds() {
  * Retrieves the title to be added to the board.
  * @returns {string} The title input value.
  */
-
 function addTitleToBoard() {
   let addTitleInput = document.getElementById("titleMainAddTask");
   if (addTitleInput) {
@@ -462,7 +234,6 @@ function addTitleToBoard() {
  * Retrieves the description to be added to the board.
  * @returns {string} The description input value.
  */
-
 function addDescriptionToBoard() {
   let addDescriptionInput = document.getElementById("descriptionMainAddTask");
   if (addDescriptionInput) {
@@ -476,7 +247,6 @@ function addDescriptionToBoard() {
  * Retrieves the due date to be added to the board.
  * @returns {string} The due date input value.
  */
-
 function addDueDateToBoard() {
   let addDueDateInput = document.getElementById("dueDateMainAddTask").value;
   if (addDueDateInput) {
@@ -490,7 +260,6 @@ function addDueDateToBoard() {
  * Retrieves the status of subtasks to be added to the board.
  * @returns {Array<string>} The array of subtask status.
  */
-
 function addDoneToBoard() {
   let addSubtaskStatus = [];
   for (let j = 0; j < addSubtasks.length; j++) {
@@ -504,7 +273,6 @@ function addDoneToBoard() {
  * Retrieves the members to be added to the task.
  * @returns {Array<string>} The array of members.
  */
-
 function addMembersToTask() {
   let addMembersValue = [];
   for (let i = 0; i < addMembersStatusArray.length; i++) {
@@ -519,7 +287,6 @@ function addMembersToTask() {
 /**
  * Clears the input fields related to adding a task.
  */
-
 function clearAddTaskFloating() {
   document.getElementById("titleMainAddTask").value = "";
   document.getElementById("descriptionMainAddTask").value = "";
@@ -534,7 +301,6 @@ function clearAddTaskFloating() {
  * Toggles the priority of a task.
  * @param {number} priority - The priority value.
  */
-
 function togglePriority(priority) {
   if (activePriority === priority) {
     activePriority = null;
@@ -551,7 +317,6 @@ function togglePriority(priority) {
 /**
  * Pushes members to the task.
  */
-
 function pushMembers() {
   for (let i = 0; i < mainUserInfos[0]["contactBook"].length; i++) {
     let addMembersValue = mainUserInfos[0]["contactBook"][i]["name"];
@@ -563,7 +328,6 @@ function pushMembers() {
 /**
  * Changes the icons for subtasks and handles their functionalities.
  */
-
 function changeIconsSubtask() {
   // Get the container for icons
   let iconsContainer = document.getElementById("iconContainerSubtasks");
@@ -578,7 +342,6 @@ function changeIconsSubtask() {
 /**
  * Changes the icons for subtasks back to the original state and clears the subtask input.
  */
-
 function changeIconsSubtaskBack() {
   let inputContainer = document.getElementById("subTaskInputMain");
   let iconsContainer = document.getElementById("iconContainerSubtasks");
@@ -592,7 +355,6 @@ function changeIconsSubtaskBack() {
 /**
  * Displays technical categories for selection.
  */
-
 function technicalUserMain() {
   let technical = document.getElementById("listTechnicalMain");
   technical.classList.remove("dNone");
@@ -606,11 +368,9 @@ function technicalUserMain() {
 /**
  * Toggles the display of technical categories dropdown.
  */
-
 function toggleCategory() {
   var listTechnical = document.getElementById("listTechnicalMain");
   var categoryDropdown = document.getElementById("categoryDropdownMain");
-
   if (
     listTechnical.style.display === "none" ||
     listTechnical.style.display === ""
@@ -629,190 +389,9 @@ function toggleCategory() {
  */
 function chosenTechnicalUserMain(category) {
   document.getElementById("categoryInput").value = category;
-  selectedCategoryInput = category;
-  
-  // Schließe das Dropdown-Menü für technische Kategorien
+  selectedCategoryInput = category;  
   var listTechnical = document.getElementById("listTechnicalMain");
   listTechnical.style.display = "none";
   var categoryDropdown = document.getElementById("categoryDropdownMain");
   categoryDropdown.src = "assets/img/arrow_drop_down.png";
 }
-
-/**
- * Displays an alert notification.
- */
-
-function showAlert() {
-  var customAlert = document.getElementById("addedTask");
-  customAlert.classList.add("show"); // Add CSS class to show the alert
-  setTimeout(function () {
-    customAlert.style.animation = "flyOutToLeft 1s forwards"; // Start the animation
-    setTimeout(function () {
-      customAlert.classList.remove("show"); // Remove CSS class to hide the alert
-      customAlert.style.animation = ""; // Setzt die Animation zurück
-    }, 1000); // Wait for 1 second before hiding the alert
-  }, 3000); // Wait for 3 seconds before starting the animation
-  redirectToBoardPage();
-}
-
-/**
- * Enables editing of a subtask.
- * @param {number} i - The index of the subtask to edit.
- */
-
-function editSubtask(i) {
-  document.getElementById(`valueSubtaskContainer${i}`).innerHTML = `
-  <input value="${addSubtasks[i]}" id="inputEditSubtask${i}" class="inputEditSubtaskInProcess">
-  <div class="editDeleteSubtaskIconContainerInProcess">
-    <img src="assets/img/delete.svg" alt="edit icon" id="editSubtaskIcon" onclick="deleteChanges(${i})">
-    <div class="seperaterSubtasks"></div>
-    <img src="assets/img/check.svg" alt"delete icon" id="deleteSubtaskIcon" onclick="acceptChanges(${i})">
-  </div>
-  `;
-}
-
-/**
- * Deletes a subtask.
- * @param {number} i - The index of the subtask to delete.
- */
-
-function deleteSubtask(i) {
-  var elementToRemove = document.getElementById(`valueSubtaskContainer${i}`);
-  elementToRemove.remove();
-  addSubtasks.splice(i, 1);
-  let clear = document.getElementById("subtaskListMain");
-  clear.innerHTML = "";
-  for (let j = 0; j < addSubtasks.length; j++) {
-    document.getElementById("subtaskListMain").innerHTML += `
-  <div id="valueSubtaskContainer${j}" class="valueSubtaskContainer">
-    <li>${addSubtasks[j]}</li>
-    <div class="editDeleteSubtaskIconContainer">
-      <img src="assets/img/edit.svg" alt="edit icon" id="editSubtaskIcon" onclick="editSubtask(${j})">
-      <div class="seperaterSubtasks"></div>
-      <img src="assets/img/delete.svg" alt"delete icon" id="deleteSubtaskIcon" onclick="deleteSubtask(${j})">
-    </div>
-  </div>  
-    `;
-  }
-}
-
-/**
- * Reverts changes made to a subtask.
- * @param {number} i - The index of the subtask to revert changes.
- */
-
-function deleteChanges(i) {
-  document.getElementById(`valueSubtaskContainer${i}`).innerHTML = `
-
-  <li>${addSubtasks[i]}</li>
-    <div class="editDeleteSubtaskIconContainer">
-      <img src="assets/img/edit.svg" alt="edit icon" id="editSubtaskIcon" onclick="editSubtask(${i})">
-      <div class="seperaterSubtasks"></div>
-      <img src="assets/img/delete.svg" alt"delete icon" id="deleteSubtaskIcon" onclick="deleteSubtask(${i})">
-    </div>
-  </div>`;
-}
-
-/**
- * Accepts changes made to a subtask.
- * @param {number} i - The index of the subtask to accept changes.
- */
-
-function acceptChanges(i) {
-  let newValue = document.getElementById(`inputEditSubtask${i}`).value;
-  addSubtasks[i] = newValue;
-  document.getElementById(`valueSubtaskContainer${i}`).innerHTML = `
-  <li>${addSubtasks[i]}</li>
-    <div class="editDeleteSubtaskIconContainer">
-      <img src="assets/img/edit.svg" alt="edit icon" id="editSubtaskIcon" onclick="editSubtask(${i})">
-      <div class="seperaterSubtasks"></div>
-      <img src="assets/img/delete.svg" alt"delete icon" id="deleteSubtaskIcon" onclick="deleteSubtask(${i})">
-    </div>
-  `;
-}
-
-/**
- * Clears all fields related to adding a task.
- */
-
-function clearCurrentall() {
-  statusMembers = [];
-  addMembers = [];
-  document.getElementById("titleMainAddTask").value = "";
-  document.getElementById("descriptionMainAddTask").value = "";
-  document.getElementById("dueDateMainAddTask").value = "";
-  document.getElementById("assignedInputMain").innerHTML = "";
-  document.getElementById("categoryInput").value = "";
-  document.getElementById("subTaskInputMain").value = "";
-  document.getElementById("subtaskListMain").innerHTML = "";
-}
-
-/**
- * Handles the click event for priority selection.
- * Resets background colors, toggles background color for the selected priority, and adds the priority value.
- *
- * @param {string} priorityType - The type of priority clicked.
- * @returns {void}
- */
-function handlePriorityClick(priorityType) {
-  resetBackgroundColors();
-  toggleBackgroundColor(priorityType);
-  addPriorityValue(priorityType);
-}
-
-/**
- * Resets the background colors of all priority buttons.
- *
- * @returns {void}
- */
-function resetBackgroundColors() {
-  const buttons = document.querySelectorAll(".priorityBox > div");
-  buttons.forEach((button) => {
-    button.classList.remove("activePrioLow");
-    button.classList.remove("activePrioMedium");
-    button.classList.remove("activePrioUrgent");
-  });
-}
-
-/**
- * Toggles the background color of buttons based on the priority type.
- * If the button has the specified priority type, it adds an active class for that priority type.
- * Otherwise, it removes active classes for all priority types.
- *
- * @param {string} priorityType - The priority type ('low', 'medium', or 'urgent').
- * @returns {void}
- */
-function toggleBackgroundColor(priorityType) {
-  const buttons = document.querySelectorAll(".priorityBox > div");
-  buttons.forEach((button) => {
-    if (button.classList.contains(priorityType)) {
-      button.classList.add(
-        "activePrio" +
-          priorityType.charAt(0).toUpperCase() +
-          priorityType.slice(1)
-      );
-    } else {
-      button.classList.remove("activePrioLow");
-      button.classList.remove("activePrioMedium");
-      button.classList.remove("activePrioUrgent");
-    }
-  });
-}
-
-/**
- * Sets the current priority value and displays corresponding icons based on the selected priority.
- *
- * @param {string} priority - The priority value to be set.
- * @returns {void}
- */
-function addPriorityValue(priority) {
-  currentPriority = priority;
-  console.log("Selected priority:", currentPriority);
-  showIconsPrio(priority);
-}
-
-
-
-
-
-

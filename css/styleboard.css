@@ -72,12 +72,15 @@
   padding-left: 8px;
 }
 
-.categorysBoard {
-  display: flex;
-  justify-content: space-between;
-  width: 244px;
-  color: #42526e;
-}
+
+  .categorysBoard {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    color: rgb(66, 82, 110);
+    min-width: 244px;
+  }
+
 
 .inputSearchContainer::placeholder {
   font-family: "Open Sans", sans-serif;
@@ -155,6 +158,14 @@
   height: 100%;
   flex: 0.25;
   padding-top: 24px;
+  overflow-y: scroll;
+  min-width: 252px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.styleCategoryContainer {
+  margin-right: 12px;
 }
 
 .addTaskBtn {
@@ -653,13 +664,12 @@
 
 #boardsContainer {
   height: 100vh;
-  overflow-y: scroll;
   overflow-x: hidden;
   width: calc(100vw - 232px);
 }
 
 .tasksOnBoard {
-  box-shadow: 0px 0px 10px 3px #00000014;
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
   border-radius: 24px;
   width: 230px;
   padding: 16px;
@@ -1477,9 +1487,13 @@ th {
     width: 100%;
   }
 
+
+  .styleTasks {
+    overflow-x: scroll;
+    overflow-y:none;
+  }
   #boardsContainer {
     width: 100%;
-    overflow-x: scroll;
   }
 
   .boardsContainer {
@@ -1489,10 +1503,6 @@ th {
   .noTasks {
     max-width: 252px;
     margin-bottom: 10px;
-  }
-
-  .categorysBoardContainer {
-    overflow-x: scroll;
   }
 
   .mainBoard {

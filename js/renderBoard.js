@@ -9,120 +9,6 @@ function renderAddTaskFloating() {
 
 
 /**
- * Creates the HTML content for the add task form.
- * @returns {string} The HTML content for the add task form.
- */
-function createAddTaskFormHTML() {
-  return `
-  <div class="addTaskContainer" id="addTaskFloating">
-    ${createCloseBtnContainerHTML()}
-    <div id="addedTask" class="addedTask">Task added to board <img src="assets/img/vector.svg" id="vector"></div>
-    <h1 class="h1AddTask">Add Task</h1>
-    <form id="addTaskForm" onsubmit="handleTaskForm(event)" novalidate>
-        ${createTitleInputHTML()}
-        ${createDescriptionInputHTML()}
-        ${createDueDateInputHTML()}
-        ${createPriorityOptionsHTML()}
-        ${createAssignedToInputHTML()}
-        ${createCategoryInputHTML()}
-        ${createSubtasksInputHTML()}
-        ${createSubmitButtonHTML()}
-    </form>
-  </div>
-  `;
-}
-
-
-/**
- * Creates the HTML content for the close button container.
- * @returns {string} The HTML content for the close button container.
- */
-function createCloseBtnContainerHTML() {
-  return `
-  <div class="closeBtnContainer">
-      <img src="assets/img/close.svg" alt="close img" onclick="toggleCard()" class="closeImg">
-  </div>
-  `;
-}
-
-
-/**
- * Creates the HTML content for the title input field and its alert message.
- * @returns {string} The HTML content for the title input field and its alert message.
- */
-function createTitleInputHTML() {
-  return `
-  <input type="text" id="titleAddTaskFloating" class="titleAddTaskFloating" maxlength="50" name="title" placeholder="Enter a title" required>
-  <div id="alertTitleBoard" class="alertMessage"></div>
-  `;
-}
-
-
-/**
- * Creates the HTML content for the description input field.
- * @returns {string} The HTML content for the description input field.
- */
-function createDescriptionInputHTML() {
-  return `
-  <label for="descriptionAddTaskFloating" class="styleDescription">
-    <span id="descriptionTitleAddTask" class="descriptionTitleAddTask">Description
-      <span id="optionalDescriptionTitleAddTask" class="optionalDescriptionTitleAddTask">(optional)</span>
-    </span>
-  </label>
-  <textarea id="descriptionAddTaskFloating" class="descriptionAddTaskFloating" name="description" rows="4" cols="50" placeholder="Enter a Description"></textarea>
-  `;
-}
-
-
-/**
- * Creates the HTML content for the due date input field.
- * @returns {string} The HTML content for the due date input field.
- */
-function createDueDateInputHTML() {
-  return `
-  <label class="styleDueDate" for="dueDateAddTaskFloating">Due date</label>
-  <input type="date" id="dueDateAddTaskFloating" class="dueDateAddTaskFloating" name="due_date" onload="setTodayDate()" onblur="validateSelectedDate()" required placeholder="dd/mm/yyyy">
-  <div id="alertDateBoard" class="alertMessage"></div>
-  `;
-}
-
-
-/**
- * Creates the HTML content for the priority options.
- * @returns {string} The HTML content for the priority options.
- */
-function createPriorityOptionsHTML() {
-  return `
-  <div class="priority">
-    <div class="priorityHeader">Priority</div>
-    <div class="priorityBox">
-        ${createPriorityOptionHTML("urgent", "alta", "alta (1)")}
-        ${createPriorityOptionHTML("medium", "media (1)", "media")}
-        ${createPriorityOptionHTML("low", "baja", "baja (1)")}
-    </div>
-  </div>
-  <div id="alertPrioBoard" class="alertMessage"></div>
-  `;
-}
-
-
-/**
- * Creates the HTML content for a priority option.
- * @param {string} priority - The priority level.
- * @param {string} colorImg - The filename of the colored icon.
- * @param {string} grayImg - The filename of the grayscale icon.
- * @returns {string} The HTML content for the priority option.
- */
-function createPriorityOptionHTML(priorityType, colorImgSrc, grayImgSrc) {
-  return `
-    <div class="${priorityType}" onclick="handlePriorityClick('${priorityType}')">${priorityType.charAt(0).toUpperCase() + priorityType.slice(1)}
-      <img class="colorImg" src="assets/img/Prio ${colorImgSrc}.png" id="${priorityType}IconColor">
-      <img class="grayImg" src="assets/img/Prio ${grayImgSrc}.png" id="${priorityType}IconGray">
-    </div>
-  `;
-}
-
-/**
  * Handles the click event for priority types.
  * Resets background colors, toggles the background color for the selected priority type,
  * and adds the priority value.
@@ -153,71 +39,6 @@ function createAssignedToInputHTML() {
   `;
 }
 
-
-/**
- * Creates the HTML content for the category input field and dropdown.
- * @returns {string} The HTML content for the category input field and dropdown.
- */
-function createCategoryInputHTML() {
-  return `
-  <div class="categoryHeader">
-    <div class="styleCategory"><b>Category</b></div>
-    <div class="inputWithIcon" onclick="technicalUser(), toggleCategory()">
-        <input type="text" id="categoryInput" class="categoryInput" placeholder="Select task category..." readonly required>
-        <img id="categoryDropdown" src="assets/img/arrow_drop_down.png" class="dropdownIcon">
-    </div>
-    <div id="listTechnical" class="techUser"></div>
-  </div>
-  <div id="alertCategoryBoard" class="alertMessage"></div>
-  `;
-}
-
-
-/**
- * Generates HTML for adding subtasks.
- * 
- * Includes an input field for adding new subtasks, an icon container for selecting icons,
- * and an alert message container for validation messages.
- * 
- * @returns {string} HTML content for adding subtasks.
- */
-function createSubtasksInputHTML() {
-  return `
-  <div class="subtasks">
-    <div class="styleSubtasks"><b>Subtasks</b> (optional)</div>
-    <div class="inputWithIcon">
-        <input type="text" placeholder="Add new subtask..." id="subTaskInput" class="subTaskInput">
-        <div id="iconContainerSubtasks" class="iconContainerSubtasks">
-          <img id="subTaskMain" class="subTaskMain" onclick="changeIconsSubtask()" src="assets/img/Subtask's icons.png" class="dropdownIcon">
-        </div>
-      </div>
-      <div id="alertSubtaskBoard" class="alertMessage"></div>
-    <div id="subtaskList" class="subtaskList"></div>
-  </div>
-  `;
-}
-
-
-/**
- * Generates HTML for the submit button.
- * 
- * Includes a button for submitting the task creation form.
- * 
- * @returns {string} HTML content for the submit button.
- */
-function createSubmitButtonHTML() {
-  return `
-  <div class="button-container">
-      <div class="button-box">
-          <div class="create-button">
-              <button class="create" type="submit">Create Task<img src="assets/img/check.png"></button>
-          </div>
-      </div>
-  </div>
-  `;
-}
-
-
 /**
  * Capitalizes the first letter of a given string.
  * 
@@ -227,7 +48,6 @@ function createSubmitButtonHTML() {
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
 
 /**
  * Renders a floating task on the board.
@@ -244,27 +64,6 @@ function renderTaskFloating(i) {
     transformPriorityToImgOverBoard(i);
   }
 }
-
-
-/**
- * Updates task data from the main user infos.
- * 
- * @param {Object} task - The task object to update data from.
- */
-function updateTaskDataFromMainUserInfos(task) {
-  if (task["category"] !== undefined) addCategoryInput = task["category"];
-  if (task["title"] !== undefined) addTitleInput = task["title"];
-  if (task["description"] !== undefined) addDescriptionInput = task["description"];
-  if (task["dueDate"] !== undefined) {
-    let dueDate = new Date(task["dueDate"]);
-    let day = dueDate.getDate();
-    let month = dueDate.getMonth() + 1;
-    let year = dueDate.getFullYear();
-    addDateInput = `${day}/${month}/${year}`;
-  }
-  if (task["priority"] !== undefined) addPriorityInput = task["priority"];
-}
-
 
 /**
  * Renders the task board HTML based on the task data.
@@ -289,7 +88,6 @@ function renderTaskBoardHTML(i) {
   `;
 }
 
-
 /**
  * Renders the category container HTML for the task board.
  * 
@@ -304,7 +102,6 @@ function renderCategoryContainer(i) {
     </div>
   `;
 }
-
 
 /**
  * Renders the due date row HTML for the task board.
@@ -321,7 +118,6 @@ function renderDueDateRow(i) {
   `;
 }
 
-
 /**
  * Renders the priority row HTML for the task board.
  * 
@@ -335,7 +131,6 @@ function renderPriorityRow() {
     </tr>
   `;
 }
-
 
 /**
  * Renders the "Assigned to" section HTML for the task board.
@@ -351,7 +146,6 @@ function renderAssignedToSection() {
   `;
 }
 
-
 /**
  * Renders the container for subtasks on the task board.
  * 
@@ -365,7 +159,6 @@ function renderSubtasksContainer() {
     </div>
   `;
 }
-
 
 /**
  * Renders the container for subtasks on the task board.
@@ -381,7 +174,6 @@ function renderDeleteChangeContainer(i) {
     </div>
   `;
 }
-
 
 /**
  * Renders the assigned members for a task on the task board.
@@ -408,7 +200,6 @@ function renderAssignedMembers(i, task) {
   }
 }
 
-
 /**
  * Renders subtasks for a task if they exist.
  * 
@@ -418,7 +209,6 @@ function renderAssignedMembers(i, task) {
 function renderSubtasks(i, task) {
   if (task["subtasks"] !== undefined) insertSubtasks(i);
 }
-
 
 /**
  * Inserts subtasks into the task board if they exist.
@@ -437,7 +227,6 @@ function insertSubtasks(i) {
     `;
   }
 }
-
 
 /**
  * Generates HTML for a task element on the board.
@@ -468,7 +257,6 @@ function generateTodoHTML(element, currentUserInfo) {
   `;
 }
 
-
 /**
  * Generates HTML for the progress bar of a task.
  * 
@@ -487,126 +275,6 @@ function generateProgressHTML(id, result) {
   `;
 }
 
-
-/**
- * Retrieves the value of the title input field from the floating task board.
- * 
- * @returns {string} The value of the title input field, or an empty string if the input field is not found.
- */
-function addTitleToBoard() {
-  let addTitleInput = document.getElementById("titleAddTaskFloating");
-  if (addTitleInput) {
-    return addTitleInput.value;
-  } else {
-    return "";
-  }
-}
-
-
-/**
- * Retrieves the value of the description input field from the floating task board.
- * 
- * @returns {string} The value of the description input field, or an empty string if the input field is not found.
- */
-function addDescriptionToBoard() {
-  let addDescriptionInput = document.getElementById(
-    "descriptionAddTaskFloating"
-  );
-  if (addDescriptionInput) {
-    return addDescriptionInput.value;
-  } else {
-    return "";
-  }
-}
-
-
-/**
- * Retrieves the value of the due date input field from the floating task board.
- * 
- * @returns {string} The value of the due date input field, or an empty string if the input field is empty.
- */
-function addDueDateToBoard() {
-  let addDueDateInput = document.getElementById("dueDateAddTaskFloating").value;
-  if (addDueDateInput) {
-    return addDueDateInput;
-  } else {
-    return "";
-  }
-}
-
-
-/**
- * Retrieves the value of the category input field from the floating task board.
- * 
- * @returns {string} The value of the category input field, or an empty string if the input field is empty.
- */
-function addCategoryToBoard() {
-  let addCategoryInput = document.getElementById("categoryInput");
-  if (addCategoryInput) {
-    return addCategoryInput.value;
-  } else {
-    return "";
-  }
-}
-
-
-/**
- * Creates an array representing the status of subtasks on the floating task board.
- * 
- * @returns {string[]} An array containing the status of subtasks, initialized to "false".
- */
-function addDoneToBoard() {
-  let addSubtaskStatus = [];
-  for (let j = 0; j < addSubtasks.length; j++) {
-    let firstStatus = "false";
-    addSubtaskStatus.push(firstStatus);
-  }
-  return addSubtaskStatus;
-}
-
-
-/**
- * Updates task information based on user input and renders the updated task on the board.
- * 
- * @param {Event} event - The event object triggered by the form submission.
- * @param {number} taskId - The ID of the task to be updated.
- * @returns {Promise<void>} A Promise that resolves after the task information is updated and the task is rendered.
- */
-async function updateTaskInfos(event, taskId) {
-  event.preventDefault();
-  const { priority, category } = mainUserInfos[0].tasks[taskId];
-  const updatedTitle = document.getElementById(`titleEdit${taskId}`).value;
-  const updatedDescription = document.getElementById(`descriptionAddTaskFloating${taskId}`).value;
-  const updatedDueDate = document.getElementById(`dueDateAddTaskFloating${taskId}`).value;
-  updateTaskFields(taskId, updatedTitle, updatedDescription, updatedDueDate, priority, category);
-  await updateStorage();
-  renderTaskFloating(taskId);
-  closeCard(taskId);
-}
-
-
-
-/**
- * Aktualisiert die Felder einer Aufgabe mit den übergebenen Werten.
- * @param {number} taskId - Die ID der Aufgabe.
- * @param {string} title - Der aktualisierte Titel der Aufgabe.
- * @param {string} description - Die aktualisierte Beschreibung der Aufgabe.
- * @param {string} dueDate - Das aktualisierte Fälligkeitsdatum der Aufgabe.
- * @param {string} priority - Die aktualisierte Priorität der Aufgabe.
- * @param {string} category - Die aktualisierte Kategorie der Aufgabe.
- */
-function updateTaskFields(taskId, title, description, dueDate, priority, category) {
-  const task = mainUserInfos[0].tasks[taskId];
-  task.title = title;
-  task.description = description;
-  task.dueDate = dueDate;
-  task.priority = priority;
-  task.category = category;
-  task.subtasks = addSubtasks;
-  task.status = statusMembers;
-}
-
-
 /**
  * Aktualisiert die lokale Speicherung der Benutzerinformationen.
  * @async
@@ -615,23 +283,6 @@ async function updateStorage() {
   await setItem(currentUserMail, JSON.stringify(mainUserInfos));
   addSubtasks = [];
 }
-
-
-/**
- * Fügt Mitglieder zur Aufgabe hinzu.
- * @returns {Array} Ein Array mit den hinzugefügten Mitgliedern.
- */
-function addMembersToTask() {
-  let addMembersValue = [];
-  for (let i = 0; i < addMembersStatusArray.length; i++) {
-    let element = addMembersStatusArray[i];
-    if (element === true) {
-      addMembersValue.push(addMembersValueArray[i]);
-    }
-  }
-  return addMembersValue;
-}
-
 
 /**
  * Render priority options on the task board overlay for low priority.
@@ -647,7 +298,6 @@ function renderPriorityOptionsOnBoardLow() {
       `;
 }
 
-
 /**
  * Render priority options on the task board overlay for medium priority.
  * 
@@ -661,7 +311,6 @@ function renderPriorityOptionsOnBoardMedium() {
 </div>
     `;
 }
-
 
 /**
  * Render priority options on the task board overlay for urgent priority.
@@ -678,7 +327,6 @@ function renderPriorityOptionsOnBoardUrgent() {
   `;
 }
 
-
 /**
  * Set the title value for a searched task on the board.
  * 
@@ -693,7 +341,6 @@ function addTitleValueSearched(foundTasks, i) {
   let addTitleValue = foundTasks[i]["title"];
   document.getElementById(`titleOnBoard${i}`).innerHTML = `${addTitleValue}`;
 }
-
 
 /**
  * Set the description value for a searched task on the board.
@@ -711,7 +358,6 @@ function addDescriptionValueSearched(foundTasks, i) {
     `descriptionOnBoard${i}`
   ).innerHTML = `${addDescriptionValue}`;
 }
-
 
 /**
  * Set the category value for a searched task on the board.

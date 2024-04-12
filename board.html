@@ -22,6 +22,10 @@
     <script src="js/boardTaskManagement.js"></script>
     <script src="js/boardToggle.js"></script>
     <script src="js/boardInit.js"></script>
+    <script src="js/boardData.js"></script>
+    <script src="js/boardSubTaskManagement.js"></script>
+    <script src="js/createBoard.js"></script>
+    <script src="js/editBoardCont.js"></script>
 </head>
 
 <body onload="onload()" id="body">
@@ -40,14 +44,14 @@
                 </div>
                 <div id="taskBoard"></div>
                 <div class="categorysBoardContainer" id="categorysBoardContainer">
-                    <div>
+                    <div class="styleCategoryContainer">
                         <div id="toDoBoard" class="categorysBoard">
                             <span><b>To Do</b></span>
                             <img src="./assets/img/plus_button.svg" class="addTaskBtnPlus" alt="Plus Button" onclick="toggleCard(), setBoxToDo()">
                         </div>
                         <div id="toDoTasks" class="styleTasks" ondrop="moveTo('toDoTasks')" ondragover="allowDrop(event)"></div>
                     </div>
-                    <div>
+                    <div class="styleCategoryContainer">
                         <div id="inProgressBoard" class="categorysBoard">
                             <span><b>In progress</b></span>
                             <img src="./assets/img/plus_button.svg" class="addTaskBtnPlus" alt="Plus Button"
@@ -55,7 +59,7 @@
                         </div>
                         <div id="inProgressTasks" class="styleTasks" ondrop="moveTo('inProgressTasks')" ondragover="allowDrop(event)"></div>
                     </div>
-                    <div>
+                    <div class="styleCategoryContainer">
                         <div id="awaitFeedbackBoard" class="categorysBoard">
                             <span><b>Await feedback</b></span>
                             <img src="./assets/img/plus_button.svg" class="addTaskBtnPlus" alt="Plus Button"
@@ -64,7 +68,7 @@
                         <div id="awaitFeedbackTasks" class="styleTasks" ondrop="moveTo('awaitFeedbackTasks')" ondragover="allowDrop(event)">
                         </div>
                     </div>
-                    <div>
+                    <div class="styleCategoryContainer">
                         <div id="doneBoard" class="categorysBoard">
                             <span><b>Done</b></span>
                         </div>
