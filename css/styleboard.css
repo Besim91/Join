@@ -616,7 +616,7 @@
 
 #addTaskFloating {
   position: fixed;
-  top: 120px;
+  top: 100px;
   right: -800px;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9999;
@@ -676,7 +676,8 @@
   font-size: 16px;
   line-height: 19.2px;
   color: rgba(69, 137, 255, 1);
-  word-wrap: break-word; /* Für ältere Browser */
+  word-wrap: break-word;
+  /* Für ältere Browser */
   overflow-wrap: break-word;
   text-overflow: ellipsis;
 }
@@ -741,7 +742,8 @@
   margin: 0;
   padding-top: 24px;
   padding-bottom: 24px;
-  word-wrap: break-word; /* Für ältere Browser */
+  word-wrap: break-word;
+  /* Für ältere Browser */
   overflow-wrap: break-word;
 }
 
@@ -1391,10 +1393,7 @@ th {
   border-bottom: 1px solid rgba(0, 93, 255, 1);
 }
 
-.inputEditSubtask:hover
-  .editDeleteSubtaskIconContainerInProcess
-  .inputEditSubtask:hover
-  img {
+.inputEditSubtask:hover .editDeleteSubtaskIconContainerInProcess .inputEditSubtask:hover img {
   display: flex;
 }
 
@@ -1413,10 +1412,7 @@ th {
   border-bottom: 1px solid rgba(0, 93, 255, 1);
 }
 
-.inputEditSubtaskInProcess:hover
-  .editDeleteSubtaskIconContainerInProcess
-  .inputEditSubtaskInProcess:hover
-  img {
+.inputEditSubtaskInProcess:hover .editDeleteSubtaskIconContainerInProcess .inputEditSubtaskInProcess:hover img {
   display: flex;
 }
 
@@ -1508,6 +1504,12 @@ th {
 
   #addedTask {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  #addTaskFloating {
+    top: 120px;
   }
 }
 
