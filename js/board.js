@@ -325,56 +325,60 @@ function addStatusToMembers() {
  */
 function assignRandomBackgroundColor() {
   const elementsWithProfilMember = document.querySelectorAll('[id^="profilMember"]');
-  const elementsWithSelectedProfilOnBoard = document.querySelectorAll('[id*="selectedProfilOnBoard"]');
-  
+
   elementsWithProfilMember.forEach((element) => {
-    // Überprüfen, ob das Element bereits eine Farbe zugewiesen hat
     if (!elementColors[element.id]) {
       let randomColor = generateUniqueRandomColor();
       element.style.backgroundColor = randomColor;
-      // Farbe dem Element im Objekt zuweisen
       elementColors[element.id] = randomColor;
     } else {
-      // Wenn das Element bereits eine Farbe hat, diese Farbe verwenden
       element.style.backgroundColor = elementColors[element.id];
     }
   });
-  
+  continueAssignRandomBackgroundColor();
+}
+
+/**
+ * Setzt die Hintergrundfarben für Elemente mit ausgewähltem Profil auf dem Board fort.
+ * Wenn für ein Element noch keine Farbe zugewiesen wurde, wird eine eindeutige zufällige dunkle Farbe generiert
+ * und zugewiesen. Andernfalls wird die zuvor zugewiesene Farbe beibehalten.
+ */
+  function continueAssignRandomBackgroundColor() {
+  const elementsWithSelectedProfilOnBoard = document.querySelectorAll('[id*="selectedProfilOnBoard"]');
   elementsWithSelectedProfilOnBoard.forEach((element) => {
-    // Überprüfen, ob das Element bereits eine Farbe zugewiesen hat
     if (!elementColors[element.id]) {
       let randomColor = generateUniqueRandomColor();
       element.style.backgroundColor = randomColor;
-      // Farbe dem Element im Objekt zuweisen
       elementColors[element.id] = randomColor;
     } else {
-      // Wenn das Element bereits eine Farbe hat, diese Farbe verwenden
       element.style.backgroundColor = elementColors[element.id];
     }
   });
 }
 
+/**
+ * Generiert eine eindeutige zufällige dunkle Farbe, die nicht bereits in der Liste der
+ * Elementfarben vorhanden ist.
+ * @returns {string} Eine eindeutige zufällige dunkle Farbe.
+ */
 function generateUniqueRandomColor() {
   let randomColor;
   do {
     randomColor = generateDarkColor();
-  } while (Object.values(elementColors).includes(randomColor)); // Überprüfen, ob die Farbe bereits verwendet wird
+  } while (Object.values(elementColors).includes(randomColor)); 
   return randomColor;
 }
 
 /**
  * Generates a random dark color.
- *
  * @returns {string} A random dark color in HSL format.
  */
 function generateDarkColor() {
   return `hsl(${Math.random() * 360}, 100%, ${Math.random() * 30 + 20}%)`;
 }
 
-
 /**
  * Updates the progress bar for the specified task index based on completed subtasks.
- *
  * @param {number} i - The index of the task to update progress for.
  * @returns {void}
  */
@@ -394,4 +398,3 @@ function progress(i) {
     }
   }
 }
-
