@@ -975,3 +975,9 @@ input[type="date"]::-webkit-input-placeholder {
     flex-direction: column;
   }
 }
+
+@media only screen and (max-width: 320px){
+  .clearButtonResp{
+    display: none;
+  }
+}

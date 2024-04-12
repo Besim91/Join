@@ -7,6 +7,7 @@ let addMembersStatusArray = [];
 let selectedCategoryInput;
 let statusMembers = [];
 let addMembers = [];
+let memberBackgroundColors = {};
 
 /**
  * Initializes the page.
@@ -350,20 +351,24 @@ function fillContactsOnBoard(i) {
 /**
  * Assigns random background colors to profile images.
  */
+
+
 function assignRandomBackgroundColor() {
-  const elementsWithProfilMember = document.querySelectorAll(
-    '[id^="profilMember"]'
-  );
-  const elementsWithSelectedProfilOnBoard = document.querySelectorAll(
-    '[id*="selectedProfilOnBoard"]'
-  );
+  const elementsWithProfilMember = document.querySelectorAll('[id^="profilMember"]');
+  
   elementsWithProfilMember.forEach((element) => {
-    const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-    element.style.backgroundColor = randomColor;
-  });
-  elementsWithSelectedProfilOnBoard.forEach((element) => {
-    const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-    element.style.backgroundColor = randomColor;
+    // Überprüfen, ob für dieses Mitglied bereits eine Hintergrundfarbe zugewiesen wurde
+    if (!memberBackgroundColors[element.id]) {
+      // Generiere eine zufällige Hintergrundfarbe
+      const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+      // Weise die Hintergrundfarbe dem Element zu
+      element.style.backgroundColor = randomColor;
+      // Speichere die zugewiesene Hintergrundfarbe im Objekt memberBackgroundColors
+      memberBackgroundColors[element.id] = randomColor;
+    } else {
+      // Wenn bereits eine Hintergrundfarbe zugewiesen wurde, verwenden Sie diese
+      element.style.backgroundColor = memberBackgroundColors[element.id];
+    }
   });
 }
 
