@@ -815,6 +815,7 @@ function addPriorityValue(priority) {
   showIconsPrio(priority);
 }
 
+
 /**
  * A function that executes after clicking the "CreateTask" button.
  * It displays a confirmation message and then redirects to the "board.html" page after 5 seconds.
@@ -833,5 +834,10 @@ function redirectToBoardPage() {
   }, 5000);
 }
 
-// Adding an event listener for the "CreateTask" button
-document.getElementById("createTaskButton").addEventListener("click", redirectToBoardPage);
+
+
+
+
+
+
+
