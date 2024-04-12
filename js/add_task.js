@@ -57,6 +57,8 @@ function showIconsPrio(priority) {
   });
 }
 
+
+
 /**
  * Renders contacts on the board.
  */
@@ -73,7 +75,7 @@ function renderContactsOnBoard() {
   if (mainUserInfos[0]["contactBook"]) {
     for (let i = 0; i < mainUserInfos[0]["contactBook"].length; i++) {
       contactBoard.innerHTML += `
-    <div class="contactsBoardContainer">
+    <div class="contactsBoardContainer" onclick="toggleCheckbox(${i})"> <!-- Add onclick event to toggle checkbox -->
         <div class="contactsBoardContainerChild">   
             <div class="styleMembersAddTask" id="profilMemberMain${i}"></div>
             <span class="nameMember" id="nameMemberMain${i}"></span>
@@ -86,6 +88,16 @@ function renderContactsOnBoard() {
     assignRandomBackgroundColor();
     addCheckboxStatus();
   }
+}
+
+/**
+ * Toggles the checkbox when clicking on the contact.
+ * @param {number} i - The index of the contact.
+ */
+function toggleCheckbox(i) {
+  let checkbox = document.getElementById(`checkboxMember${i}`);
+  checkbox.checked = !checkbox.checked; // Toggle checkbox
+  updateStatus(i); // Update status accordingly
 }
 
 /**
@@ -395,3 +407,4 @@ function chosenTechnicalUserMain(category) {
   var categoryDropdown = document.getElementById("categoryDropdownMain");
   categoryDropdown.src = "assets/img/arrow_drop_down.png";
 }
+
