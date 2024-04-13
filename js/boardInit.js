@@ -1,3 +1,6 @@
+const addTaskFloating = document.querySelector('.addTaskFloating');
+const openButton = document.querySelector('.open-button');
+
 /**
  * Asynchronous function called when the document is fully loaded.
  * Initializes the application, includes HTML files, displays user profile,

@@ -24,11 +24,11 @@ function toggleCard() {
  * @function toggleCardBack
  * @returns {void}
  */
-function toggleCardBack() {
+  function toggleCardBack() {
     addStatusToMembers();
     let card = document.getElementById("addTaskFloating");
     if (card && card.classList.contains("activeAddTask")) {
-      card.classList.toggle("activeAddTask");
+      card.classList.remove("activeAddTask");
     }
   }
 
@@ -273,5 +273,13 @@ function chosenTechnicalUser(category) {
   }
 
 
+  document.addEventListener("click", function(event) {
+    let card = document.getElementById("addTaskFloating");
+    let addButton = document.getElementById("addTaskBtn"); // Annahme: ID des Buttons zum Öffnen der Karte ist "addTaskBtn"
   
+    // Überprüfen, ob die Karte geöffnet ist und das geklickte Element außerhalb der Karte und des Buttons liegt
+    if (card && card.classList.contains("activeAddTask") && event.target !== card && event.target !== addButton && !card.contains(event.target) && !addButton.contains(event.target)) {
+      toggleCardBack(); // Karte schließen
+    }
+  });
   

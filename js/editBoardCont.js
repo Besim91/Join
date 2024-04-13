@@ -147,12 +147,12 @@ function addStatusToMembersEdit(i) {
       let contactBoard = document.getElementById("listContactContainerEdit");
       for (let i = 0; i < mainUserInfos[0]["contactBook"].length; i++) {
         contactBoard.innerHTML += `
-      <div class="contactsBoardContainer">
+      <div class="contactsBoardContainer" onclick="toggleCheckbox(${i})">
           <div class="contactsBoardContainerChild">   
               <div class="styleMembersAddTask" id="profilMember${i}"></div>
               <span class="nameMember" id="nameMember${i}"></span>
           </div>
-          <input class="customCheckbox" id="checkboxMember${i}" type="checkbox" onchange="updateStatus(${i})">
+          <input class="customCheckbox" id="checkboxMember${i}" type="checkbox" onclick="toggleCheckbox(${i})">
       </div>
       `;
         fillContactsOnBoard(i);
@@ -162,6 +162,21 @@ function addStatusToMembersEdit(i) {
     }
   }
   
+  function toggleCheckbox(i) {
+    const checkbox = document.getElementById(`checkboxMember${i}`);
+    checkbox.checked = !checkbox.checked;
+    updateStatus(i);
+}
+
+
+  document.querySelectorAll('.customCheckbox').forEach(function(checkbox) {
+    checkbox.addEventListener('click', function(event) {
+        // Stoppe die Ereignis-Propagation, damit das Klicken auf die Checkbox nicht das Klicken auf das contactsBoardContainer auslöst
+        event.stopPropagation();
+        // Rufe die updateStatus-Funktion auf
+        updateStatus(checkbox.id.replace('checkboxMember', ''));
+    });
+});
   /**
    * Rendert die Kontakte im Bearbeitungsbereich neu.
    * Leert zuerst den Kontaktcontainer und fügt dann die Kontakte hinzu.

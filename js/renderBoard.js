@@ -190,7 +190,7 @@ function renderAssignedMembers(i, task) {
         const memberFirstLetter = members[j].split(" ").slice(0, 2).map((word) => word.charAt(0)).join("");
         document.getElementById(`contactsOverBoardContainer`).innerHTML += `
           <div class="membersOverBoardContainer">
-              <div class="profileOnBoard" id="selectedProfilOnBoard${i}">${memberFirstLetter}</div>
+              <div class="profileOnBoard" id="selectedProfilOnBoard${j}">${memberFirstLetter}</div>
               <span>${members[j]}</span>
           </div>
         `;

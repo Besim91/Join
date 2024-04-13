@@ -80,7 +80,7 @@ function renderContactsOnBoard() {
             <div class="styleMembersAddTask" id="profilMemberMain${i}"></div>
             <span class="nameMember" id="nameMemberMain${i}"></span>
         </div>
-        <input class="customCheckbox" id="checkboxMember${i}" type="checkbox" onchange="updateStatus(${i})">
+        <input class="customCheckbox" id="checkboxMember${i}" type="checkbox" onclick="toggleCheckbox(${i})">
     </div>
     `;
       fillContactsOnBoard(i);
@@ -89,6 +89,15 @@ function renderContactsOnBoard() {
     addCheckboxStatus();
   }
 }
+
+document.querySelectorAll('.customCheckbox').forEach(function(checkbox) {
+  checkbox.addEventListener('click', function(event) {
+      // Stoppe die Ereignis-Propagation, damit das Klicken auf die Checkbox nicht das Klicken auf das contactsBoardContainer auslöst
+      event.stopPropagation();
+      // Rufe die updateStatus-Funktion auf
+      updateStatus(checkbox.id.replace('checkboxMember', ''));
+  });
+});
 
 /**
  * Toggles the checkbox when clicking on the contact.
