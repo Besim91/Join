@@ -198,3 +198,8 @@ function addStatusToMembersEdit(i) {
     addContactToBoardAndFillEdit();
   }
   
+
+
+
+  
+  

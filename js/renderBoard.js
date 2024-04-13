@@ -62,8 +62,17 @@ function renderTaskFloating(i) {
     renderAssignedMembers(i, task);
     renderSubtasks(i, task);
     transformPriorityToImgOverBoard(i);
+    generateBlurBackground(i);
+    document.getElementById("blurBoardBackground").classList.remove("dNone");
   }
 }
+
+
+function generateBlurBackground(i) {
+  document.getElementById('insertBlurBackground').innerHTML = `
+  <div id="blurBoardBackground" class="dNone" onclick="closeCard(${i})"></div>`
+}
+
 
 /**
  * Renders the task board HTML based on the task data.

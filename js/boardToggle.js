@@ -5,17 +5,17 @@
  * @returns {void}
  */
 function toggleCard() {
-  addStatusToMembers();
-  let card = document.getElementById("addTaskFloating");
-  if (card) {
-    card.classList.toggle("activeAddTask");
+    addStatusToMembers();
+    let card = document.getElementById("addTaskFloating");
+    if (card) {
+      card.classList.toggle("activeAddTask");
+    }
+    let contactBoard = document.getElementById("listContactContainerBoard");
+    if (contactBoard.classList.contains("dFlex")) {
+      contactBoard.classList.remove("dFlex");
+      contactBoard.classList.add("dNone");
+    }
   }
-  let contactBoard = document.getElementById("listContactContainerBoard");
-  if (contactBoard.classList.contains("dFlex")) {
-    contactBoard.classList.remove("dFlex");
-    contactBoard.classList.add("dNone");
-  }
-}
 
   /**
  * Toggles the visibility of the card back to its original state if it's currently active.
@@ -271,15 +271,24 @@ function chosenTechnicalUser(category) {
     let addTitleValue = foundTasks[i]["title"];
     document.getElementById(`titleOnBoard${i}`).innerHTML = `${addTitleValue}`;
   }
-
+  
 
   document.addEventListener("click", function(event) {
     let card = document.getElementById("addTaskFloating");
     let addButton = document.getElementById("addTaskBtn"); // Annahme: ID des Buttons zum Öffnen der Karte ist "addTaskBtn"
+    let addForm = document.querySelector(".inputWithIcon"); // Annahme: ID des Formulars innerhalb der Karte ist "addTaskForm"
+    let clickedElement = event.target;
   
-    // Überprüfen, ob die Karte geöffnet ist und das geklickte Element außerhalb der Karte und des Buttons liegt
-    if (card && card.classList.contains("activeAddTask") && event.target !== card && event.target !== addButton && !card.contains(event.target) && !addButton.contains(event.target)) {
+    // Überprüfen, ob das geklickte Element eine der Elemente ist, die die Karte nicht schließen sollen
+    if (
+      (clickedElement.tagName === 'IMG' && (clickedElement.alt === 'close img' || clickedElement.alt === 'add img')) || 
+      (clickedElement.id === 'subTask')
+    ) {
+      return; // Wenn das geklickte Element eine dieser spezifischen Elemente ist, beende die Funktion hier
+    }
+  
+    // Überprüfen, ob die Karte geöffnet ist und das geklickte Element außerhalb der Karte, des Buttons und des Formulars liegt
+    if (card && card.classList.contains("activeAddTask") && event.target !== card && event.target !== addButton && event.target !== addForm && !card.contains(event.target) && !addButton.contains(event.target) && !addForm.contains(event.target)) {
       toggleCardBack(); // Karte schließen
     }
   });
-  
