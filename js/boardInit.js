@@ -81,12 +81,12 @@ function addContactToBoardAndFill() {
       let contactBoard = document.getElementById("listContactContainerBoard");
       for (let i = 0; i < mainUserInfos[0]["contactBook"].length; i++) {
         contactBoard.innerHTML += `
-      <div class="contactsBoardContainer">
+      <div class="contactsBoardContainer" onclick="toggleCheckbox(${i})">
           <div class="contactsBoardContainerChild">   
               <div class="styleMembersAddTask" id="profilMember${i}"></div>
               <span class="nameMember" id="nameMember${i}"></span>
           </div>
-          <input class="customCheckbox" id="checkboxMember${i}" type="checkbox" onchange="updateStatus(${i})">
+          <input class="customCheckbox" id="checkboxMember${i}" type="checkbox" onclick="toggleCheckbox(${i})">
       </div>
       `;
         fillContactsOnBoard(i);
