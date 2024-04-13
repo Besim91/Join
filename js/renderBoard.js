@@ -67,7 +67,11 @@ function renderTaskFloating(i) {
   }
 }
 
-
+/**
+ * Generiert ein unscharfes Hintergrundelement und fügt es in ein bestimmtes Element ein.
+ * Das Hintergrundelement wird angezeigt und bei einem Klick auf das Element wird eine Funktion aufgerufen, um eine Karte zu schließen.
+ * @param {number} i - Die Indexnummer des Elements, das geschlossen werden soll.
+ */
 function generateBlurBackground(i) {
   document.getElementById('insertBlurBackground').innerHTML = `
   <div id="blurBoardBackground" class="dNone" onclick="closeCard(${i})"></div>`

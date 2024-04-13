@@ -273,22 +273,24 @@ function chosenTechnicalUser(category) {
   }
   
 
+  /**
+ * Fügt einen Event-Listener hinzu, um zu überprüfen, ob ein Klick außerhalb bestimmter Elemente erfolgt ist.
+ * Wenn ja, wird eine Funktion aufgerufen, um eine Kartenrückkehr zu aktivieren.
+ * @param {Event} event - Das Klickereignis, das ausgelöst wurde.
+ */
   document.addEventListener("click", function(event) {
     let card = document.getElementById("addTaskFloating");
-    let addButton = document.getElementById("addTaskBtn"); // Annahme: ID des Buttons zum Öffnen der Karte ist "addTaskBtn"
-    let addForm = document.querySelector(".inputWithIcon"); // Annahme: ID des Formulars innerhalb der Karte ist "addTaskForm"
+    let addButton = document.getElementById("addTaskBtn"); 
+    let addForm = document.querySelector(".inputWithIcon"); 
     let clickedElement = event.target;
-  
-    // Überprüfen, ob das geklickte Element eine der Elemente ist, die die Karte nicht schließen sollen
     if (
       (clickedElement.tagName === 'IMG' && (clickedElement.alt === 'close img' || clickedElement.alt === 'add img')) || 
-      (clickedElement.id === 'subTask')
+      (clickedElement.id === 'subTaskMain')
     ) {
-      return; // Wenn das geklickte Element eine dieser spezifischen Elemente ist, beende die Funktion hier
+      return;
     }
-  
-    // Überprüfen, ob die Karte geöffnet ist und das geklickte Element außerhalb der Karte, des Buttons und des Formulars liegt
-    if (card && card.classList.contains("activeAddTask") && event.target !== card && event.target !== addButton && event.target !== addForm && !card.contains(event.target) && !addButton.contains(event.target) && !addForm.contains(event.target)) {
-      toggleCardBack(); // Karte schließen
+      if (card && card.classList.contains("activeAddTask") && event.target !== card && event.target !== addButton && event.target !== addForm && !card.contains(event.target) && !addButton.contains(event.target) && !addForm.contains(event.target)) {
+      toggleCardBack(); 
     }
   });
+  
