@@ -5,17 +5,17 @@
  * @returns {void}
  */
 function toggleCard() {
-    addStatusToMembers();
-    let card = document.getElementById("addTaskFloating");
-    if (card) {
-      card.classList.toggle("activeAddTask");
-    }
-    let contactBoard = document.getElementById("listContactContainerBoard");
-    if (contactBoard.classList.contains("dFlex")) {
-      contactBoard.classList.remove("dFlex");
-      contactBoard.classList.add("dNone");
-    }
+  addStatusToMembers();
+  let card = document.getElementById("addTaskFloating");
+  if (card) {
+    card.classList.toggle("activeAddTask");
   }
+  let contactBoard = document.getElementById("listContactContainerBoard");
+  if (contactBoard.classList.contains("dFlex")) {
+    contactBoard.classList.remove("dFlex");
+    contactBoard.classList.add("dNone");
+  }
+}
 
   /**
  * Toggles the visibility of the card back to its original state if it's currently active.
@@ -271,4 +271,7 @@ function chosenTechnicalUser(category) {
     let addTitleValue = foundTasks[i]["title"];
     document.getElementById(`titleOnBoard${i}`).innerHTML = `${addTitleValue}`;
   }
+
+
+  
   

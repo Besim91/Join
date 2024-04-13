@@ -4,36 +4,38 @@
  * @returns {string} The HTML content for the add task form.
  */
 function createAddTaskFormHTML() {
-    return `
-    <div class="addTaskContainer" id="addTaskFloating">
-      ${createCloseBtnContainerHTML()}
-      <div id="addedTask" class="addedTask">Task added to board <img src="assets/img/vector.svg" id="vector"></div>
-      <h1 class="h1AddTask">Add Task</h1>
-      <form id="addTaskForm" onsubmit="handleTaskForm(event)" novalidate>
-          ${createTitleInputHTML()}
-          ${createDescriptionInputHTML()}
-          ${createDueDateInputHTML()}
-          ${createPriorityOptionsHTML()}
-          ${createAssignedToInputHTML()}
-          ${createCategoryInputHTML()}
-          ${createSubtasksInputHTML()}
-          ${createSubmitButtonHTML()}
-      </form>
-    </div>
-    `;
-  }
-  
-  /**
-   * Creates the HTML content for the close button container.
-   * @returns {string} The HTML content for the close button container.
-   */
-  function createCloseBtnContainerHTML() {
-    return `
-    <div class="closeBtnContainer">
-        <img src="assets/img/close.svg" alt="close img" onclick="toggleCard()" class="closeImg">
-    </div>
-    `;
-  }
+  return `
+  <div class="addTaskContainer" id="addTaskFloating" >
+    ${createCloseBtnContainerHTML()}
+    <div id="addedTask" class="addedTask">Task added to board <img src="assets/img/vector.svg" id="vector"></div>
+    <h1 class="h1AddTask">Add Task</h1>
+    <form id="addTaskForm" onsubmit="handleTaskForm(event)" novalidate>
+        ${createTitleInputHTML()}
+        ${createDescriptionInputHTML()}
+        ${createDueDateInputHTML()}
+        ${createPriorityOptionsHTML()}
+        ${createAssignedToInputHTML()}
+        ${createCategoryInputHTML()}
+        ${createSubtasksInputHTML()}
+        ${createSubmitButtonHTML()}
+    </form>
+  </div>
+  `;
+}
+
+
+/**
+ * Creates the HTML content for the close button container.
+ * @returns {string} The HTML content for the close button container.
+ */
+function createCloseBtnContainerHTML() {
+  return `
+  <div class="closeBtnContainer">
+      <img src="assets/img/close.svg" alt="close img" onclick="toggleCard()" class="closeImg">
+  </div>
+  `;
+}
+
   
   /**
    * Creates the HTML content for the title input field and its alert message.
