@@ -7,12 +7,11 @@ function renderAddTaskFloating() {
   boardsContainer.innerHTML += addTaskFormHTML;
 }
 
-
 /**
  * Handles the click event for priority types.
  * Resets background colors, toggles the background color for the selected priority type,
  * and adds the priority value.
- * 
+ *
  * @param {string} priorityType - The type of priority clicked.
  * @returns {void}
  */
@@ -41,7 +40,7 @@ function createAssignedToInputHTML() {
 
 /**
  * Capitalizes the first letter of a given string.
- * 
+ *
  * @param {string} string - The input string.
  * @returns {string} The input string with the first letter capitalized.
  */
@@ -51,11 +50,15 @@ function capitalizeFirstLetter(string) {
 
 /**
  * Renders a floating task on the board.
- * 
+ *
  * @param {number} i - The index of the task to render.
  */
 function renderTaskFloating(i) {
-  if (mainUserInfos[0] && mainUserInfos[0]["tasks"] && mainUserInfos[0]["tasks"][i]) {
+  if (
+    mainUserInfos[0] &&
+    mainUserInfos[0]["tasks"] &&
+    mainUserInfos[0]["tasks"][i]
+  ) {
     const task = mainUserInfos[0]["tasks"][i];
     updateTaskDataFromMainUserInfos(task);
     renderTaskBoardHTML(i);
@@ -73,14 +76,13 @@ function renderTaskFloating(i) {
  * @param {number} i - Die Indexnummer des Elements, das geschlossen werden soll.
  */
 function generateBlurBackground(i) {
-  document.getElementById('insertBlurBackground').innerHTML = `
-  <div id="blurBoardBackground" class="dNone" onclick="closeCard(${i})"></div>`
+  document.getElementById("insertBlurBackground").innerHTML = `
+  <div id="blurBoardBackground" class="dNone" onclick="closeCard(${i})"></div>`;
 }
-
 
 /**
  * Renders the task board HTML based on the task data.
- * 
+ *
  * @param {number} i - The index of the task.
  */
 function renderTaskBoardHTML(i) {
@@ -103,7 +105,7 @@ function renderTaskBoardHTML(i) {
 
 /**
  * Renders the category container HTML for the task board.
- * 
+ *
  * @param {number} i - The index of the task.
  * @returns {string} - The HTML string for the category container.
  */
@@ -118,7 +120,7 @@ function renderCategoryContainer(i) {
 
 /**
  * Renders the due date row HTML for the task board.
- * 
+ *
  * @param {number} i - The index of the task.
  * @returns {string} - The HTML string for the due date row.
  */
@@ -133,7 +135,7 @@ function renderDueDateRow(i) {
 
 /**
  * Renders the priority row HTML for the task board.
- * 
+ *
  * @returns {string} - The HTML string for the priority row.
  */
 function renderPriorityRow() {
@@ -147,7 +149,7 @@ function renderPriorityRow() {
 
 /**
  * Renders the "Assigned to" section HTML for the task board.
- * 
+ *
  * @returns {string} - The HTML string for the "Assigned to" section.
  */
 function renderAssignedToSection() {
@@ -161,7 +163,7 @@ function renderAssignedToSection() {
 
 /**
  * Renders the container for subtasks on the task board.
- * 
+ *
  * @returns {string} - The HTML string for the subtasks container.
  */
 function renderSubtasksContainer() {
@@ -175,13 +177,13 @@ function renderSubtasksContainer() {
 
 /**
  * Renders the container for subtasks on the task board.
- * 
+ *
  * @returns {string} - The HTML string for the subtasks container.
  */
 function renderDeleteChangeContainer(i) {
   return `
     <div class="deleteChangeContainer">
-      <div class="deleteOverBoard"><img src="assets/img/delete.svg" alt="deleteBtn" onclick="deleteTask(${i}), closeCard(${i})"> Delete</div>
+      <div class="deleteOverBoard" onclick="deleteTask(${i}), closeCard(${i})"><img src="assets/img/delete.svg" alt="deleteBtn"> Delete</div>
       <div class="seperaterDeleteChange"></div>
       <div class="editOverBoard" onclick="editTask(${i})"><img src="assets/img/edit.svg" alt="editBtn"> Edit</div>
     </div>
@@ -190,7 +192,7 @@ function renderDeleteChangeContainer(i) {
 
 /**
  * Renders the assigned members for a task on the task board.
- * 
+ *
  * @param {number} i - The index of the task.
  * @param {Object} task - The task object containing member information.
  */
@@ -199,8 +201,12 @@ function renderAssignedMembers(i, task) {
   const status = task["status"];
   if (members !== undefined) {
     for (let j = 0; j < members.length; j++) {
-      if (status[j] === true && typeof members[j] === 'string') {
-        const memberFirstLetter = members[j].split(" ").slice(0, 2).map((word) => word.charAt(0)).join("");
+      if (status[j] === true && typeof members[j] === "string") {
+        const memberFirstLetter = members[j]
+          .split(" ")
+          .slice(0, 2)
+          .map((word) => word.charAt(0))
+          .join("");
         document.getElementById(`contactsOverBoardContainer`).innerHTML += `
           <div class="membersOverBoardContainer">
               <div class="profileOnBoard" id="selectedProfilOnBoard${j}">${memberFirstLetter}</div>
@@ -215,7 +221,7 @@ function renderAssignedMembers(i, task) {
 
 /**
  * Renders subtasks for a task if they exist.
- * 
+ *
  * @param {number} i - The index of the task.
  * @param {Object} task - The task object containing subtask information.
  */
@@ -225,13 +231,14 @@ function renderSubtasks(i, task) {
 
 /**
  * Inserts subtasks into the task board if they exist.
- * 
+ *
  * @param {number} i - The index of the task.
  */
 function insertSubtasks(i) {
   for (let j = 0; j < mainUserInfos[0]["tasks"][i]["subtasks"].length; j++) {
     let addSubtasksInput = mainUserInfos[0]["tasks"][i]["subtasks"][j];
-    let isChecked = mainUserInfos[0]["tasks"][i]["done"][j] === true ? "checked" : ""; // Überprüfung, ob die Checkbox gecheckt werden soll
+    let isChecked =
+      mainUserInfos[0]["tasks"][i]["done"][j] === true ? "checked" : ""; // Überprüfung, ob die Checkbox gecheckt werden soll
     document.getElementById(`checkBoxContainer`).innerHTML += `
         <div class="subtaskCheckboxContainer">
             <input type="checkbox" id="checkbox${j}" name="checkbox${j}" onchange="checkSubtasks(${i}, ${j})" ${isChecked}>
@@ -243,17 +250,22 @@ function insertSubtasks(i) {
 
 /**
  * Generates HTML for a task element on the board.
- * 
+ *
  * @param {object} element - The task element.
  * @param {object} currentUserInfo - Information about the current user.
  * @returns {string} The HTML for the task element.
  */
 function generateTodoHTML(element, currentUserInfo) {
   const { category, title, description, priority } = currentUserInfo;
-  const progress = Array.isArray(element.done) ? element.done.filter(item => item === true).length : 0;
-  const goal = element.subtasks && Array.isArray(element.subtasks) ? element.subtasks.length : 0;
+  const progress = Array.isArray(element.done)
+    ? element.done.filter((item) => item === true).length
+    : 0;
+  const goal =
+    element.subtasks && Array.isArray(element.subtasks)
+      ? element.subtasks.length
+      : 0;
   const result = `${progress}/${goal}`;
-  const progressHTML = goal > 0 ? generateProgressHTML(element.id, result) : '';
+  const progressHTML = goal > 0 ? generateProgressHTML(element.id, result) : "";
   return `
     <div class="tasksOnBoard" onclick="toggleCardBack(), renderTaskFloating(${element.id})" draggable="true" ondragstart="startDragging(${element.id})">
       <div id="categoryOnBoard${element.id}" class="categoryOnBoard">${category}</div>
@@ -272,7 +284,7 @@ function generateTodoHTML(element, currentUserInfo) {
 
 /**
  * Generates HTML for the progress bar of a task.
- * 
+ *
  * @param {number} id - The ID of the task.
  * @param {string} result - The progress information.
  * @returns {string} The HTML for the progress bar.
@@ -299,7 +311,7 @@ async function updateStorage() {
 
 /**
  * Render priority options on the task board overlay for low priority.
- * 
+ *
  * @returns {void}
  */
 function renderPriorityOptionsOnBoardLow() {
@@ -313,7 +325,7 @@ function renderPriorityOptionsOnBoardLow() {
 
 /**
  * Render priority options on the task board overlay for medium priority.
- * 
+ *
  * @returns {void}
  */
 function renderPriorityOptionsOnBoardMedium() {
@@ -327,7 +339,7 @@ function renderPriorityOptionsOnBoardMedium() {
 
 /**
  * Render priority options on the task board overlay for urgent priority.
- * 
+ *
  * @returns {void}
  */
 
@@ -342,9 +354,9 @@ function renderPriorityOptionsOnBoardUrgent() {
 
 /**
  * Set the title value for a searched task on the board.
- * 
+ *
  * This function sets the title value of the task found in the search results to the corresponding board element.
- * 
+ *
  * @param {Array} foundTasks - The array of tasks found in the search results.
  * @param {number} i - The index of the task in the foundTasks array.
  * @returns {void}
@@ -357,9 +369,9 @@ function addTitleValueSearched(foundTasks, i) {
 
 /**
  * Set the description value for a searched task on the board.
- * 
+ *
  * This function sets the description value of the task found in the search results to the corresponding board element.
- * 
+ *
  * @param {Array} foundTasks - The array of tasks found in the search results.
  * @param {number} i - The index of the task in the foundTasks array.
  * @returns {void}
@@ -374,9 +386,9 @@ function addDescriptionValueSearched(foundTasks, i) {
 
 /**
  * Set the category value for a searched task on the board.
- * 
+ *
  * This function sets the category value of the task found in the search results to the corresponding board element.
- * 
+ *
  * @param {Array} foundTasks - The array of tasks found in the search results.
  * @param {number} i - The index of the task in the foundTasks array.
  * @returns {void}
